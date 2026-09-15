@@ -3,33 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="JJJ SkillForge Academy - Practical digital and career-focused skills training. Learn, Build and Grow.">
+
+  <meta
+    name="description"
+    content="JJJ SkillForge Academy - Learn, Build and Grow with practical digital skills training."
+  >
+
   <title>JJJ SkillForge Academy | Learn • Build • Grow</title>
 
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Font Awesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- Loading screen -->
-  <div class="loader" id="loader" aria-hidden="true">
+  <!-- =========================
+       Loading Screen
+       ========================= -->
+  <div class="loader" id="loader">
     <div class="loader-content">
       <div class="loader-logo">JJJ</div>
+
       <div class="loader-bar">
         <div class="loader-progress"></div>
       </div>
+
       <p>Loading your learning journey...</p>
     </div>
   </div>
 
-  <!-- Navigation -->
+  <!-- =========================
+       Navigation
+       ========================= -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#home" class="nav-logo" aria-label="JJJ SkillForge Academy home">
+      <a href="#home" class="nav-logo" aria-label="JJJ SkillForge Academy Home">
         <div class="logo-icon">J</div>
+
         <div class="logo-text">
           <h3>JJJ SkillForge</h3>
           <p>Academy</p>
@@ -50,7 +73,13 @@
         <a href="#registration" class="btn btn-primary">Join Now</a>
       </div>
 
-      <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false">
+      <button
+        class="hamburger"
+        id="hamburger"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -59,7 +88,9 @@
   </nav>
 
   <main>
-    <!-- Hero -->
+    <!-- =========================
+         Hero Section
+         ========================= -->
     <section class="hero" id="home">
       <div class="hero-bg-animation" aria-hidden="true">
         <div class="floating-shape shape-1"></div>
@@ -82,8 +113,8 @@
           </h1>
 
           <p class="hero-description">
-            Build practical digital and career-focused skills through guided learning,
-            hands-on practice, and project-based training designed for beginners.
+            Build practical digital and career-focused skills through clear teaching,
+            hands-on learning, and real project experience.
           </p>
 
           <div class="hero-buttons">
@@ -103,8 +134,9 @@
               <div class="stat-icon">
                 <i class="fas fa-laptop-code"></i>
               </div>
+
               <div class="stat-info">
-                <h4 class="counter" data-target="8">0</h4>
+                <h4 class="counter" data-target="5">0</h4>
                 <p>Practical Courses</p>
               </div>
             </div>
@@ -113,6 +145,7 @@
               <div class="stat-icon">
                 <i class="fas fa-users"></i>
               </div>
+
               <div class="stat-info">
                 <h4>Beginner</h4>
                 <p>Friendly Learning</p>
@@ -121,8 +154,9 @@
 
             <div class="stat-item">
               <div class="stat-icon">
-                <i class="fas fa-certificate"></i>
+                <i class="fas fa-hands-on"></i>
               </div>
+
               <div class="stat-info">
                 <h4>100%</h4>
                 <p>Practical Focus</p>
@@ -139,6 +173,7 @@
                 <span class="dot yellow"></span>
                 <span class="dot green"></span>
               </div>
+
               <span class="window-title">skillforge.js</span>
             </div>
 
@@ -146,7 +181,11 @@
 <pre><code><span class="code-keyword">const</span> <span class="code-variable">academy</span> = {
   <span class="code-property">name</span>: <span class="code-string">"JJJ SkillForge"</span>,
   <span class="code-property">mission</span>: <span class="code-string">"Learn • Build • Grow"</span>,
-  <span class="code-property">focus</span>: [<span class="code-string">"Skills"</span>, <span class="code-string">"Projects"</span>, <span class="code-string">"Careers"</span>],
+  <span class="code-property">focus</span>: [
+    <span class="code-string">"Skills"</span>,
+    <span class="code-string">"Projects"</span>,
+    <span class="code-string">"Careers"</span>
+  ],
   <span class="code-property">start</span>: <span class="code-function">function</span>() {
     <span class="code-keyword">return</span> <span class="code-string">"Your journey begins!"</span>;
   }
@@ -163,12 +202,12 @@
 
           <div class="floating-card card-2">
             <i class="fas fa-robot"></i>
-            <span>AI Basics</span>
+            <span>AI &amp; Data</span>
           </div>
 
           <div class="floating-card card-3">
-            <i class="fas fa-file-alt"></i>
-            <span>MS Office</span>
+            <i class="fas fa-file-powerpoint"></i>
+            <span>PPT Design</span>
           </div>
         </div>
       </div>
@@ -181,14 +220,19 @@
       </div>
     </section>
 
-    <!-- About -->
+    <!-- =========================
+         About Section
+         ========================= -->
     <section class="about section" id="about">
       <div class="container">
         <div class="section-header">
           <span class="section-badge">About Us</span>
+
           <h2 class="section-title">
-            Building Tomorrow's <span class="gradient-text">Digital Leaders</span>
+            Building Tomorrow's
+            <span class="gradient-text">Digital Leaders</span>
           </h2>
+
           <p class="section-subtitle">
             JJJ SkillForge Academy focuses on practical learning, accessible digital
             skills, project work, and career preparation.
@@ -198,7 +242,11 @@
         <div class="about-content">
           <div class="about-text">
             <div class="about-card glass-card">
-              <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+              <h3>
+                <i class="fas fa-bullseye"></i>
+                Our Mission
+              </h3>
+
               <p>
                 To help learners develop practical digital skills through clear teaching,
                 hands-on activities, and meaningful projects.
@@ -206,10 +254,14 @@
             </div>
 
             <div class="about-card glass-card">
-              <h3><i class="fas fa-eye"></i> Our Vision</h3>
+              <h3>
+                <i class="fas fa-eye"></i>
+                Our Vision
+              </h3>
+
               <p>
-                To help beginners become confident learners who can apply digital tools
-                and skills in education, work, and career opportunities.
+                To help beginners become confident learners who can use digital tools
+                in education, work, projects, and career opportunities.
               </p>
             </div>
 
@@ -218,6 +270,7 @@
                 <div class="highlight-icon">
                   <i class="fas fa-tools"></i>
                 </div>
+
                 <h4>Practical Training</h4>
                 <p>Learn by doing with guided exercises</p>
               </div>
@@ -226,6 +279,7 @@
                 <div class="highlight-icon">
                   <i class="fas fa-seedling"></i>
                 </div>
+
                 <h4>Beginner Friendly</h4>
                 <p>Start with clear foundations</p>
               </div>
@@ -234,6 +288,7 @@
                 <div class="highlight-icon">
                   <i class="fas fa-diagram-project"></i>
                 </div>
+
                 <h4>Project Based</h4>
                 <p>Build useful work as you learn</p>
               </div>
@@ -242,6 +297,7 @@
                 <div class="highlight-icon">
                   <i class="fas fa-briefcase"></i>
                 </div>
+
                 <h4>Career Focused</h4>
                 <p>Develop skills for modern work</p>
               </div>
@@ -271,182 +327,262 @@
       </div>
     </section>
 
-    <!-- Courses -->
+    <!-- =========================
+         Courses Section
+         ========================= -->
     <section class="courses section" id="courses">
       <div class="container">
         <div class="section-header">
           <span class="section-badge">Our Courses</span>
+
           <h2 class="section-title">
-            Explore Our <span class="gradient-text">Course Catalog</span>
+            Learn Skills That Help You
+            <span class="gradient-text">Grow</span>
           </h2>
+
           <p class="section-subtitle">
-            Choose a course that matches your current level and start building useful,
-            practical skills.
+            Choose practical, career-focused training designed to build confidence,
+            digital skills, and project experience.
           </p>
         </div>
 
-        <div class="course-filters" aria-label="Course filters">
-          <button class="filter-btn active" type="button" data-filter="all">All Courses</button>
-          <button class="filter-btn" type="button" data-filter="beginner">Beginner</button>
-          <button class="filter-btn" type="button" data-filter="intermediate">Intermediate</button>
+        <div class="pricing-banner">
+          <div class="pricing-item">
+            <i class="fas fa-file-signature"></i>
+
+            <div>
+              <span>Registration Fee</span>
+              <strong>₹500</strong>
+            </div>
+          </div>
+
+          <div class="pricing-divider"></div>
+
+          <div class="pricing-item">
+            <i class="fas fa-graduation-cap"></i>
+
+            <div>
+              <span>One Course Fee</span>
+              <strong>₹2,000</strong>
+            </div>
+          </div>
+
+          <div class="pricing-divider"></div>
+
+          <div class="pricing-item total-fee">
+            <i class="fas fa-receipt"></i>
+
+            <div>
+              <span>New Student Total</span>
+              <strong>₹2,500</strong>
+            </div>
+          </div>
         </div>
 
         <div class="courses-grid">
-          <article class="course-card glass-card" data-category="beginner">
-            <div class="course-icon"><i class="fas fa-desktop"></i></div>
+          <!-- Basic Computer Skills -->
+          <article class="course-card glass-card">
+            <div class="course-icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+
             <div class="course-badge">Beginner</div>
+
             <h3 class="course-title">Basic Computer Skills</h3>
+
             <p class="course-description">
-              Learn computer operation, file management, internet browsing, and everyday digital literacy.
+              Get comfortable with essential computer tools and everyday digital applications.
             </p>
+
             <div class="course-topics">
-              <span><i class="fas fa-check"></i> Computer Basics</span>
-              <span><i class="fas fa-check"></i> File Management</span>
-              <span><i class="fas fa-check"></i> Internet Skills</span>
+              <span><i class="fas fa-check"></i> MS Word</span>
+              <span><i class="fas fa-check"></i> Excel</span>
+              <span><i class="fas fa-check"></i> PowerPoint</span>
+              <span><i class="fas fa-check"></i> Internet &amp; Email</span>
+              <span><i class="fas fa-check"></i> Google Docs / Drive</span>
             </div>
+
             <div class="course-footer">
-              <span class="course-duration"><i class="fas fa-clock"></i> 4 Weeks</span>
-              <a href="#registration" class="btn btn-primary btn-sm">Enroll Now</a>
+              <span class="course-fee">
+                <i class="fas fa-indian-rupee-sign"></i>
+                ₹2,000
+              </span>
+
+              <a
+                href="#registration"
+                class="btn btn-primary btn-sm course-enroll-btn"
+                data-course="Basic Computer Skills"
+              >
+                Enroll Now
+              </a>
             </div>
           </article>
 
-          <article class="course-card glass-card" data-category="beginner">
-            <div class="course-icon"><i class="fas fa-file-word"></i></div>
+          <!-- Frontend Development -->
+          <article class="course-card glass-card">
+            <div class="course-icon">
+              <i class="fas fa-code"></i>
+            </div>
+
             <div class="course-badge">Beginner</div>
-            <h3 class="course-title">MS Word</h3>
-            <p class="course-description">
-              Create and format professional documents for academic, personal, and office use.
-            </p>
-            <div class="course-topics">
-              <span><i class="fas fa-check"></i> Document Formatting</span>
-              <span><i class="fas fa-check"></i> Templates</span>
-              <span><i class="fas fa-check"></i> Mail Merge</span>
-            </div>
-            <div class="course-footer">
-              <span class="course-duration"><i class="fas fa-clock"></i> 3 Weeks</span>
-              <a href="#registration" class="btn btn-primary btn-sm">Enroll Now</a>
-            </div>
-          </article>
 
-          <article class="course-card glass-card" data-category="beginner">
-            <div class="course-icon"><i class="fas fa-file-excel"></i></div>
-            <div class="course-badge">Beginner</div>
-            <h3 class="course-title">MS Excel</h3>
-            <p class="course-description">
-              Learn spreadsheets, formulas, functions, charts, pivot tables, and basic data analysis.
-            </p>
-            <div class="course-topics">
-              <span><i class="fas fa-check"></i> Formulas &amp; Functions</span>
-              <span><i class="fas fa-check"></i> Pivot Tables</span>
-              <span><i class="fas fa-check"></i> Data Analysis</span>
-            </div>
-            <div class="course-footer">
-              <span class="course-duration"><i class="fas fa-clock"></i> 4 Weeks</span>
-              <a href="#registration" class="btn btn-primary btn-sm">Enroll Now</a>
-            </div>
-          </article>
-
-          <article class="course-card glass-card" data-category="beginner">
-            <div class="course-icon"><i class="fas fa-file-powerpoint"></i></div>
-            <div class="course-badge">Beginner</div>
-            <h3 class="course-title">PowerPoint / PPT Design</h3>
-            <p class="course-description">
-              Design effective presentations using layouts, visuals, animations, and clear storytelling.
-            </p>
-            <div class="course-topics">
-              <span><i class="fas fa-check"></i> Slide Design</span>
-              <span><i class="fas fa-check"></i> Animations</span>
-              <span><i class="fas fa-check"></i> Presentations</span>
-            </div>
-            <div class="course-footer">
-              <span class="course-duration"><i class="fas fa-clock"></i> 3 Weeks</span>
-              <a href="#registration" class="btn btn-primary btn-sm">Enroll Now</a>
-            </div>
-          </article>
-
-          <article class="course-card glass-card" data-category="intermediate">
-            <div class="course-icon"><i class="fas fa-code"></i></div>
-            <div class="course-badge">Intermediate</div>
             <h3 class="course-title">Frontend Development</h3>
+
             <p class="course-description">
-              Build responsive websites using HTML5, CSS3, JavaScript, and practical web projects.
+              Learn to build beautiful and responsive websites from scratch.
             </p>
+
             <div class="course-topics">
-              <span><i class="fas fa-check"></i> HTML5 &amp; CSS3</span>
-              <span><i class="fas fa-check"></i> JavaScript</span>
-              <span><i class="fas fa-check"></i> Responsive Design</span>
+              <span><i class="fas fa-check"></i> HTML</span>
+              <span><i class="fas fa-check"></i> CSS</span>
+              <span><i class="fas fa-check"></i> JavaScript Basics</span>
+              <span><i class="fas fa-check"></i> Creating a Personal Website</span>
+              <span><i class="fas fa-check"></i> Hosting a Website</span>
             </div>
+
             <div class="course-footer">
-              <span class="course-duration"><i class="fas fa-clock"></i> 12 Weeks</span>
-              <a href="#registration" class="btn btn-primary btn-sm">Enroll Now</a>
+              <span class="course-fee">
+                <i class="fas fa-indian-rupee-sign"></i>
+                ₹2,000
+              </span>
+
+              <a
+                href="#registration"
+                class="btn btn-primary btn-sm course-enroll-btn"
+                data-course="Frontend Development"
+              >
+                Enroll Now
+              </a>
             </div>
           </article>
 
-          <article class="course-card glass-card" data-category="intermediate">
-            <div class="course-icon"><i class="fas fa-user-circle"></i></div>
-            <div class="course-badge">Intermediate</div>
-            <h3 class="course-title">Portfolio Creation</h3>
-            <p class="course-description">
-              Create a professional portfolio that presents your work, skills, projects, and personal brand.
-            </p>
-            <div class="course-topics">
-              <span><i class="fas fa-check"></i> Personal Branding</span>
-              <span><i class="fas fa-check"></i> Project Showcase</span>
-              <span><i class="fas fa-check"></i> GitHub Pages</span>
+          <!-- Portfolio & Resume -->
+          <article class="course-card glass-card">
+            <div class="course-icon">
+              <i class="fas fa-address-card"></i>
             </div>
-            <div class="course-footer">
-              <span class="course-duration"><i class="fas fa-clock"></i> 4 Weeks</span>
-              <a href="#registration" class="btn btn-primary btn-sm">Enroll Now</a>
-            </div>
-          </article>
 
-          <article class="course-card glass-card" data-category="beginner">
-            <div class="course-icon"><i class="fas fa-screwdriver-wrench"></i></div>
             <div class="course-badge">Beginner</div>
-            <h3 class="course-title">Digital Tools</h3>
+
+            <h3 class="course-title">Portfolio &amp; Resume</h3>
+
             <p class="course-description">
-              Use practical cloud, collaboration, productivity, and workplace digital tools efficiently.
+              Showcase your skills and stand out in the job market.
             </p>
+
             <div class="course-topics">
-              <span><i class="fas fa-check"></i> Google Workspace</span>
-              <span><i class="fas fa-check"></i> Cloud Tools</span>
-              <span><i class="fas fa-check"></i> Collaboration</span>
+              <span><i class="fas fa-check"></i> Personal Portfolio Website</span>
+              <span><i class="fas fa-check"></i> GitHub Basics</span>
+              <span><i class="fas fa-check"></i> LinkedIn Profile</span>
+              <span><i class="fas fa-check"></i> Resume Creation</span>
+              <span><i class="fas fa-check"></i> Project Presentation</span>
             </div>
+
             <div class="course-footer">
-              <span class="course-duration"><i class="fas fa-clock"></i> 3 Weeks</span>
-              <a href="#registration" class="btn btn-primary btn-sm">Enroll Now</a>
+              <span class="course-fee">
+                <i class="fas fa-indian-rupee-sign"></i>
+                ₹2,000
+              </span>
+
+              <a
+                href="#registration"
+                class="btn btn-primary btn-sm course-enroll-btn"
+                data-course="Portfolio & Resume"
+              >
+                Enroll Now
+              </a>
             </div>
           </article>
 
-          <article class="course-card glass-card" data-category="intermediate">
-            <div class="course-icon"><i class="fas fa-robot"></i></div>
-            <div class="course-badge">Intermediate</div>
-            <h3 class="course-title">AI Basics</h3>
-            <p class="course-description">
-              Understand AI concepts, learn prompt writing, and explore AI tools for practical work.
-            </p>
-            <div class="course-topics">
-              <span><i class="fas fa-check"></i> AI Fundamentals</span>
-              <span><i class="fas fa-check"></i> Prompt Engineering</span>
-              <span><i class="fas fa-check"></i> AI Tools</span>
+          <!-- PPT & Presentation -->
+          <article class="course-card glass-card">
+            <div class="course-icon">
+              <i class="fas fa-file-powerpoint"></i>
             </div>
+
+            <div class="course-badge">Beginner</div>
+
+            <h3 class="course-title">PPT &amp; Presentation</h3>
+
+            <p class="course-description">
+              Create impressive presentations and communicate your ideas with confidence.
+            </p>
+
+            <div class="course-topics">
+              <span><i class="fas fa-check"></i> Professional PPT Design</span>
+              <span><i class="fas fa-check"></i> Canva</span>
+              <span><i class="fas fa-check"></i> Presentation Skills</span>
+              <span><i class="fas fa-check"></i> Project / Symposium Presentation</span>
+            </div>
+
             <div class="course-footer">
-              <span class="course-duration"><i class="fas fa-clock"></i> 6 Weeks</span>
-              <a href="#registration" class="btn btn-primary btn-sm">Enroll Now</a>
+              <span class="course-fee">
+                <i class="fas fa-indian-rupee-sign"></i>
+                ₹2,000
+              </span>
+
+              <a
+                href="#registration"
+                class="btn btn-primary btn-sm course-enroll-btn"
+                data-course="PPT & Presentation"
+              >
+                Enroll Now
+              </a>
+            </div>
+          </article>
+
+          <!-- Beginner AI & Data -->
+          <article class="course-card glass-card">
+            <div class="course-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+
+            <div class="course-badge">Beginner</div>
+
+            <h3 class="course-title">Beginner AI &amp; Data</h3>
+
+            <p class="course-description">
+              Explore the world of data and AI with simple, practical learning.
+            </p>
+
+            <div class="course-topics">
+              <span><i class="fas fa-check"></i> Python Basics</span>
+              <span><i class="fas fa-check"></i> AI Tools</span>
+              <span><i class="fas fa-check"></i> Basic Data Analysis</span>
+              <span><i class="fas fa-check"></i> Simple ML Concepts</span>
+            </div>
+
+            <div class="course-footer">
+              <span class="course-fee">
+                <i class="fas fa-indian-rupee-sign"></i>
+                ₹2,000
+              </span>
+
+              <a
+                href="#registration"
+                class="btn btn-primary btn-sm course-enroll-btn"
+                data-course="Beginner AI & Data"
+              >
+                Enroll Now
+              </a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Why Us -->
+    <!-- =========================
+         Why Choose Us
+         ========================= -->
     <section class="why-us section" id="why-us">
       <div class="container">
         <div class="section-header">
           <span class="section-badge">Why Choose Us</span>
+
           <h2 class="section-title">
             The <span class="gradient-text">JJJ Advantage</span>
           </h2>
+
           <p class="section-subtitle">
             Learn in a supportive environment that prioritizes clear explanations,
             useful practice, and career-relevant skills.
@@ -455,88 +591,124 @@
 
         <div class="why-grid">
           <article class="why-card glass-card">
-            <div class="why-icon"><i class="fas fa-hand-holding-heart"></i></div>
+            <div class="why-icon">
+              <i class="fas fa-hand-holding-heart"></i>
+            </div>
+
             <h3>Practical Learning</h3>
-            <p>Build understanding through exercises and practical tasks, rather than theory alone.</p>
+            <p>Build understanding through exercises and practical tasks, not theory alone.</p>
           </article>
 
           <article class="why-card glass-card">
-            <div class="why-icon"><i class="fas fa-diagram-project"></i></div>
+            <div class="why-icon">
+              <i class="fas fa-diagram-project"></i>
+            </div>
+
             <h3>Hands-on Projects</h3>
-            <p>Apply your learning by creating projects that demonstrate your developing skills.</p>
+            <p>Apply your learning by creating projects that demonstrate your growing skills.</p>
           </article>
 
           <article class="why-card glass-card">
-            <div class="why-icon"><i class="fas fa-chalkboard-user"></i></div>
-            <h3>Easy-to-Understand Teaching</h3>
-            <p>Learn challenging topics through simple, structured explanations suitable for beginners.</p>
+            <div class="why-icon">
+              <i class="fas fa-chalkboard-user"></i>
+            </div>
+
+            <h3>Easy Teaching</h3>
+            <p>Learn challenging topics through simple and structured explanations.</p>
           </article>
 
           <article class="why-card glass-card">
-            <div class="why-icon"><i class="fas fa-laptop-code"></i></div>
+            <div class="why-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+
             <h3>Modern Digital Skills</h3>
-            <p>Explore relevant tools and digital skills that are useful in a modern learning and work environment.</p>
+            <p>Explore relevant tools and digital skills useful in modern learning and work.</p>
           </article>
 
           <article class="why-card glass-card">
-            <div class="why-icon"><i class="fas fa-briefcase"></i></div>
+            <div class="why-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+
             <h3>Career Preparation</h3>
-            <p>Develop portfolios, practical confidence, and skills that support your next career step.</p>
+            <p>Build portfolios, confidence, and practical skills for your next opportunity.</p>
           </article>
 
           <article class="why-card glass-card">
-            <div class="why-icon"><i class="fas fa-people-group"></i></div>
+            <div class="why-icon">
+              <i class="fas fa-people-group"></i>
+            </div>
+
             <h3>Supportive Environment</h3>
-            <p>Ask questions, practice consistently, and learn with encouraging guidance throughout your journey.</p>
+            <p>Ask questions, practice consistently, and learn with encouraging guidance.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Process -->
+    <!-- =========================
+         Learning Process
+         ========================= -->
     <section class="process section" id="process">
       <div class="container">
         <div class="section-header">
           <span class="section-badge">Learning Process</span>
+
           <h2 class="section-title">
             Your Path to <span class="gradient-text">Growth</span>
           </h2>
+
           <p class="section-subtitle">
-            A clear four-step learning approach that turns foundational knowledge into usable skills.
+            A clear four-step approach that turns foundational knowledge into usable skills.
           </p>
         </div>
 
         <div class="process-timeline">
           <div class="process-step">
             <div class="step-number">1</div>
-            <div class="step-icon"><i class="fas fa-book-open"></i></div>
+            <div class="step-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
             <h3>Learn</h3>
             <p>Understand key concepts through clear lessons and demonstrations.</p>
           </div>
 
-          <div class="process-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="process-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
 
           <div class="process-step">
             <div class="step-number">2</div>
-            <div class="step-icon"><i class="fas fa-keyboard"></i></div>
+            <div class="step-icon">
+              <i class="fas fa-keyboard"></i>
+            </div>
             <h3>Practice</h3>
             <p>Improve through guided activities, exercises, and consistent practice.</p>
           </div>
 
-          <div class="process-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="process-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
 
           <div class="process-step">
             <div class="step-number">3</div>
-            <div class="step-icon"><i class="fas fa-code"></i></div>
+            <div class="step-icon">
+              <i class="fas fa-code"></i>
+            </div>
             <h3>Build</h3>
-            <p>Create real work that helps demonstrate your skills and progress.</p>
+            <p>Create useful work that helps demonstrate your skills and progress.</p>
           </div>
 
-          <div class="process-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="process-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
 
           <div class="process-step">
             <div class="step-number">4</div>
-            <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="step-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
             <h3>Grow</h3>
             <p>Use your skills confidently in education, projects, and career opportunities.</p>
           </div>
@@ -544,16 +716,20 @@
       </div>
     </section>
 
-    <!-- Registration -->
+    <!-- =========================
+         Registration Section
+         ========================= -->
     <section class="registration section" id="registration">
       <div class="container">
         <div class="section-header">
           <span class="section-badge">Registration</span>
+
           <h2 class="section-title">
             Start Your <span class="gradient-text">Journey Today</span>
           </h2>
+
           <p class="section-subtitle">
-            Submit your details to register your interest. Our team will contact you about the next steps.
+            Submit your details to register your interest. Our team will contact you about enrolment.
           </p>
         </div>
 
@@ -566,7 +742,14 @@
                     <i class="fas fa-user"></i>
                     Student Name *
                   </label>
-                  <input type="text" id="studentName" name="studentName" placeholder="Enter your full name" required>
+
+                  <input
+                    type="text"
+                    id="studentName"
+                    name="studentName"
+                    placeholder="Enter your full name"
+                    required
+                  >
                 </div>
               </div>
 
@@ -576,7 +759,16 @@
                     <i class="fas fa-phone"></i>
                     Phone Number *
                   </label>
-                  <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="Enter 10-digit phone number" pattern="[0-9]{10}" required>
+
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter 10-digit phone number"
+                    inputmode="numeric"
+                    pattern="[0-9]{10}"
+                    required
+                  >
                 </div>
               </div>
 
@@ -586,7 +778,14 @@
                     <i class="fas fa-envelope"></i>
                     Email Address *
                   </label>
-                  <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    required
+                  >
                 </div>
               </div>
 
@@ -596,17 +795,32 @@
                     <i class="fas fa-graduation-cap"></i>
                     Select Course *
                   </label>
+
                   <select id="course" name="course" required>
                     <option value="">Choose a course...</option>
-                    <option value="Basic Computer Skills">Basic Computer Skills</option>
-                    <option value="MS Word">MS Word</option>
-                    <option value="MS Excel">MS Excel</option>
-                    <option value="PowerPoint / PPT Design">PowerPoint / PPT Design</option>
-                    <option value="Frontend Development">Frontend Development</option>
-                    <option value="Portfolio Creation">Portfolio Creation</option>
-                    <option value="Digital Tools">Digital Tools</option>
-                    <option value="AI Basics">AI Basics</option>
+                    <option value="Basic Computer Skills">Basic Computer Skills — ₹2,000</option>
+                    <option value="Frontend Development">Frontend Development — ₹2,000</option>
+                    <option value="Portfolio & Resume">Portfolio & Resume — ₹2,000</option>
+                    <option value="PPT & Presentation">PPT & Presentation — ₹2,000</option>
+                    <option value="Beginner AI & Data">Beginner AI & Data — ₹2,000</option>
                   </select>
+
+                  <div class="fee-summary">
+                    <div>
+                      <span>Registration Fee</span>
+                      <strong>₹500</strong>
+                    </div>
+
+                    <div>
+                      <span>Selected Course Fee</span>
+                      <strong id="selectedCourseFee">₹0</strong>
+                    </div>
+
+                    <div class="fee-total">
+                      <span>Total Payable</span>
+                      <strong id="totalPayable">₹500</strong>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -616,6 +830,7 @@
                     <i class="fas fa-laptop"></i>
                     Learning Mode *
                   </label>
+
                   <select id="mode" name="mode" required>
                     <option value="">Select learning mode...</option>
                     <option value="Online">Online</option>
@@ -630,6 +845,7 @@
                     <i class="fas fa-calendar"></i>
                     Preferred Batch
                   </label>
+
                   <select id="batch" name="batch">
                     <option value="">Select preferred batch...</option>
                     <option value="Morning">Morning (9 AM - 12 PM)</option>
@@ -646,7 +862,13 @@
                     <i class="fas fa-comment"></i>
                     Message (Optional)
                   </label>
-                  <textarea id="message" name="message" rows="4" placeholder="Any questions or special requirements?"></textarea>
+
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="Any questions or special requirements?"
+                  ></textarea>
                 </div>
               </div>
 
@@ -661,22 +883,49 @@
 
           <aside class="registration-info">
             <div class="info-card glass-card">
-              <h3><i class="fas fa-circle-info"></i> Registration Process</h3>
+              <h3>
+                <i class="fas fa-circle-info"></i>
+                Registration Process
+              </h3>
+
               <ol>
                 <li>Complete the registration form.</li>
                 <li>Select your course and learning preference.</li>
                 <li>Our team will review your request.</li>
-                <li>Receive guidance on enrolment and payment.</li>
-                <li>Begin your learning journey.</li>
+                <li>Pay the required fee using the QR code.</li>
+                <li>Submit your UTR/transaction ID for verification.</li>
               </ol>
             </div>
 
             <div class="info-card glass-card">
-              <h3><i class="fas fa-headset"></i> Need Help?</h3>
+              <h3>
+                <i class="fas fa-indian-rupee-sign"></i>
+                Fee Details
+              </h3>
+
+              <p><strong>Registration Fee:</strong> ₹500</p>
+              <p><strong>One Course Fee:</strong> ₹2,000</p>
+              <p><strong>Total for New Student:</strong> ₹2,500</p>
+            </div>
+
+            <div class="info-card glass-card">
+              <h3>
+                <i class="fas fa-headset"></i>
+                Need Help?
+              </h3>
+
               <p>Contact JJJ SkillForge Academy directly:</p>
+
               <div class="contact-details">
-                <p><i class="fas fa-phone"></i> <a href="tel:8825461007">8825461007</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:jeyabelvin005@gmail.com">jeyabelvin005@gmail.com</a></p>
+                <p>
+                  <i class="fas fa-phone"></i>
+                  <a href="tel:8825461007">8825461007</a>
+                </p>
+
+                <p>
+                  <i class="fas fa-envelope"></i>
+                  <a href="mailto:jeyabelvin005@gmail.com">jeyabelvin005@gmail.com</a>
+                </p>
               </div>
             </div>
           </aside>
@@ -684,16 +933,21 @@
       </div>
     </section>
 
-    <!-- Payment / QR -->
+    <!-- =========================
+         Payment Section
+         ========================= -->
     <section class="payment section" id="payment">
       <div class="container">
         <div class="section-header">
           <span class="section-badge">Secure Payment</span>
+
           <h2 class="section-title">
             Pay Your <span class="gradient-text">Course Fee</span>
           </h2>
+
           <p class="section-subtitle">
-            Scan the QR code with any UPI-enabled app. Verify the recipient name and payment amount before confirming.
+            Registration fee is ₹500. One course fee is ₹2,000.
+            New student total is ₹2,500.
           </p>
         </div>
 
@@ -705,15 +959,33 @@
 
             <h3>UPI Payment</h3>
 
+            <div class="payment-price-list">
+              <div>
+                <span>Registration Fee</span>
+                <strong>₹500</strong>
+              </div>
+
+              <div>
+                <span>One Course Fee</span>
+                <strong>₹2,000</strong>
+              </div>
+
+              <div class="payment-total">
+                <span>Total for New Student</span>
+                <strong>₹2,500</strong>
+              </div>
+            </div>
+
             <p class="payment-description">
-              Open Google Pay, PhonePe, Paytm, BHIM, or another UPI app. Scan the QR code and complete the payment.
+              Scan the QR code using Google Pay, PhonePe, Paytm, BHIM, or another
+              UPI application. After paying, enter the UTR or transaction ID below.
             </p>
 
             <div class="upi-details">
               <span>UPI ID</span>
 
-              <!-- REPLACE THIS WITH YOUR REAL UPI ID -->
-              <strong id="upiIdText">jebakumar.s.81@okhdfcbank</strong>
+              <!-- IMPORTANT: Replace with your actual UPI ID -->
+              <strong id="upiIdText">your-upi-id@bank</strong>
 
               <button type="button" class="copy-upi-btn" id="copyUpiBtn">
                 <i class="fas fa-copy"></i>
@@ -723,36 +995,145 @@
 
             <div class="payment-note">
               <i class="fas fa-shield-halved"></i>
+
               <p>
-                Confirm the beneficiary name shown in the payment app before entering your UPI PIN.
-                Never share your UPI PIN, OTP, or bank password.
+                Confirm the recipient name shown in your UPI application before entering
+                your UPI PIN. Never share your UPI PIN, OTP, or password.
               </p>
             </div>
           </div>
 
           <div class="qr-wrapper">
             <div class="qr-card">
-              <!-- Put your QR image at: images/payment-qr.png -->
+              <!-- Put your actual QR image here: images/payment-qr.png -->
               <img
                 src="images/payment-qr.png"
                 alt="JJJ SkillForge Academy UPI payment QR code"
                 class="payment-qr"
               >
             </div>
+
             <p class="qr-caption">Scan to pay securely</p>
           </div>
+        </div>
+
+        <!-- Payment Confirmation Form -->
+        <div class="payment-confirmation glass-card">
+          <div class="payment-confirmation-header">
+            <i class="fas fa-receipt"></i>
+
+            <div>
+              <h3>Already Paid?</h3>
+              <p>Enter your payment details to notify the academy.</p>
+            </div>
+          </div>
+
+          <form id="paymentForm" class="payment-form">
+            <div class="form-group">
+              <label for="paymentStudentName">
+                <i class="fas fa-user"></i>
+                Student Name *
+              </label>
+
+              <input
+                type="text"
+                id="paymentStudentName"
+                name="paymentStudentName"
+                placeholder="Enter your full name"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="paymentPhone">
+                <i class="fas fa-phone"></i>
+                Phone Number *
+              </label>
+
+              <input
+                type="tel"
+                id="paymentPhone"
+                name="paymentPhone"
+                placeholder="Enter 10-digit phone number"
+                inputmode="numeric"
+                pattern="[0-9]{10}"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="paymentCourse">
+                <i class="fas fa-graduation-cap"></i>
+                Course *
+              </label>
+
+              <select id="paymentCourse" name="paymentCourse" required>
+                <option value="">Select paid course...</option>
+                <option value="Basic Computer Skills">Basic Computer Skills</option>
+                <option value="Frontend Development">Frontend Development</option>
+                <option value="Portfolio & Resume">Portfolio & Resume</option>
+                <option value="PPT & Presentation">PPT & Presentation</option>
+                <option value="Beginner AI & Data">Beginner AI & Data</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="paymentAmount">
+                <i class="fas fa-indian-rupee-sign"></i>
+                Amount Paid *
+              </label>
+
+              <select id="paymentAmount" name="paymentAmount" required>
+                <option value="">Select amount paid...</option>
+                <option value="500">₹500 — Registration Fee</option>
+                <option value="2000">₹2,000 — One Course Fee</option>
+                <option value="2500">₹2,500 — Registration + One Course</option>
+              </select>
+            </div>
+
+            <div class="form-group payment-utr-group">
+              <label for="utrNumber">
+                <i class="fas fa-hashtag"></i>
+                UTR / Transaction ID *
+              </label>
+
+              <input
+                type="text"
+                id="utrNumber"
+                name="utrNumber"
+                placeholder="Enter UPI transaction ID or UTR number"
+                required
+              >
+            </div>
+
+            <div class="form-group payment-submit-group">
+              <button type="submit" class="btn btn-primary btn-block">
+                <i class="fas fa-check-circle"></i>
+                I Have Paid — Submit Details
+              </button>
+            </div>
+          </form>
+
+          <p class="payment-verification-text">
+            Payment status is <strong>Pending Verification</strong> until the academy
+            confirms the amount has been received in its UPI or bank account.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- =========================
+         Contact Section
+         ========================= -->
     <section class="contact section" id="contact">
       <div class="container">
         <div class="section-header">
           <span class="section-badge">Contact Us</span>
+
           <h2 class="section-title">
             Get In <span class="gradient-text">Touch</span>
           </h2>
+
           <p class="section-subtitle">
             Ask a question, enquire about a course, or contact us through the details below.
           </p>
@@ -761,7 +1142,10 @@
         <div class="contact-container">
           <div class="contact-info">
             <div class="contact-card glass-card">
-              <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+              <div class="contact-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+
               <div class="contact-details">
                 <h3>Phone</h3>
                 <p><a href="tel:8825461007">8825461007</a></p>
@@ -769,19 +1153,33 @@
             </div>
 
             <div class="contact-card glass-card">
-              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+
               <div class="contact-details">
                 <h3>Email</h3>
-                <p><a href="mailto:jeyabelvin005@gmail.com">jeyabelvin005@gmail.com</a></p>
+                <p>
+                  <a href="mailto:jeyabelvin005@gmail.com">
+                    jeyabelvin005@gmail.com
+                  </a>
+                </p>
               </div>
             </div>
 
             <div class="contact-card glass-card">
-              <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+              <div class="contact-icon">
+                <i class="fab fa-linkedin"></i>
+              </div>
+
               <div class="contact-details">
                 <h3>LinkedIn</h3>
                 <p>
-                  <a href="https://www.linkedin.com/in/jeya-belvin-334281367/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/in/jeya-belvin-334281367/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Connect on LinkedIn
                   </a>
                 </p>
@@ -789,11 +1187,18 @@
             </div>
 
             <div class="contact-card glass-card">
-              <div class="contact-icon"><i class="fab fa-github"></i></div>
+              <div class="contact-icon">
+                <i class="fab fa-github"></i>
+              </div>
+
               <div class="contact-details">
                 <h3>GitHub</h3>
                 <p>
-                  <a href="https://github.com/jeyabelvin005-sketch/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://github.com/jeyabelvin005-sketch/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Visit GitHub Profile
                   </a>
                 </p>
@@ -810,7 +1215,14 @@
                   <i class="fas fa-user"></i>
                   Your Name *
                 </label>
-                <input type="text" id="contactName" name="contactName" placeholder="Enter your name" required>
+
+                <input
+                  type="text"
+                  id="contactName"
+                  name="contactName"
+                  placeholder="Enter your name"
+                  required
+                >
               </div>
 
               <div class="form-group">
@@ -818,7 +1230,14 @@
                   <i class="fas fa-envelope"></i>
                   Email Address *
                 </label>
-                <input type="email" id="contactEmail" name="contactEmail" placeholder="Enter your email" required>
+
+                <input
+                  type="email"
+                  id="contactEmail"
+                  name="contactEmail"
+                  placeholder="Enter your email"
+                  required
+                >
               </div>
 
               <div class="form-group">
@@ -826,7 +1245,14 @@
                   <i class="fas fa-phone"></i>
                   Phone Number
                 </label>
-                <input type="tel" id="contactPhone" name="contactPhone" inputmode="numeric" placeholder="Enter phone number">
+
+                <input
+                  type="tel"
+                  id="contactPhone"
+                  name="contactPhone"
+                  placeholder="Enter phone number"
+                  inputmode="numeric"
+                >
               </div>
 
               <div class="form-group">
@@ -834,7 +1260,14 @@
                   <i class="fas fa-comment"></i>
                   Message *
                 </label>
-                <textarea id="contactMessage" name="contactMessage" rows="5" placeholder="Type your message here..." required></textarea>
+
+                <textarea
+                  id="contactMessage"
+                  name="contactMessage"
+                  rows="5"
+                  placeholder="Type your message here..."
+                  required
+                ></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary btn-block">
@@ -848,13 +1281,16 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- =========================
+       Footer
+       ========================= -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <a href="#home" class="footer-logo" aria-label="Back to home">
+          <a href="#home" class="footer-logo" aria-label="Back to Home">
             <div class="logo-icon">J</div>
+
             <div class="logo-text">
               <h3>JJJ SkillForge</h3>
               <p>Academy</p>
@@ -864,15 +1300,28 @@
           <p class="footer-tagline">Learn • Build • Grow</p>
 
           <p class="footer-description">
-            Practical digital skills training designed to help learners build confidence and useful skills.
+            Practical digital skills training designed to help learners build confidence
+            and useful skills.
           </p>
 
           <div class="footer-social">
-            <a href="https://www.linkedin.com/in/jeya-belvin-334281367/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+            <a
+              href="https://www.linkedin.com/in/jeya-belvin-334281367/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="LinkedIn"
+            >
               <i class="fab fa-linkedin"></i>
             </a>
 
-            <a href="https://github.com/jeyabelvin005-sketch/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+            <a
+              href="https://github.com/jeyabelvin005-sketch/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="GitHub"
+            >
               <i class="fab fa-github"></i>
             </a>
 
@@ -880,7 +1329,11 @@
               <i class="fas fa-phone"></i>
             </a>
 
-            <a href="mailto:jeyabelvin005@gmail.com" class="social-link" aria-label="Email">
+            <a
+              href="mailto:jeyabelvin005@gmail.com"
+              class="social-link"
+              aria-label="Email"
+            >
               <i class="fas fa-envelope"></i>
             </a>
           </div>
@@ -888,6 +1341,7 @@
 
         <div class="footer-links">
           <h4>Quick Links</h4>
+
           <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -901,28 +1355,52 @@
 
         <div class="footer-links">
           <h4>Our Courses</h4>
+
           <ul>
             <li><a href="#courses">Basic Computer Skills</a></li>
-            <li><a href="#courses">MS Office Skills</a></li>
             <li><a href="#courses">Frontend Development</a></li>
-            <li><a href="#courses">Portfolio Creation</a></li>
-            <li><a href="#courses">Digital Tools</a></li>
-            <li><a href="#courses">AI Basics</a></li>
+            <li><a href="#courses">Portfolio &amp; Resume</a></li>
+            <li><a href="#courses">PPT &amp; Presentation</a></li>
+            <li><a href="#courses">Beginner AI &amp; Data</a></li>
           </ul>
         </div>
 
         <div class="footer-contact">
           <h4>Contact Info</h4>
+
           <ul>
-            <li><i class="fas fa-phone"></i><a href="tel:8825461007">8825461007</a></li>
-            <li><i class="fas fa-envelope"></i><a href="mailto:jeyabelvin005@gmail.com">jeyabelvin005@gmail.com</a></li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <a href="tel:8825461007">8825461007</a>
+            </li>
+
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:jeyabelvin005@gmail.com">
+                jeyabelvin005@gmail.com
+              </a>
+            </li>
+
             <li>
               <i class="fab fa-linkedin"></i>
-              <a href="https://www.linkedin.com/in/jeya-belvin-334281367/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+              <a
+                href="https://www.linkedin.com/in/jeya-belvin-334281367/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn Profile
+              </a>
             </li>
+
             <li>
               <i class="fab fa-github"></i>
-              <a href="https://github.com/jeyabelvin005-sketch/" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+              <a
+                href="https://github.com/jeyabelvin005-sketch/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub Profile
+              </a>
             </li>
           </ul>
         </div>
@@ -935,22 +1413,29 @@
     </div>
   </footer>
 
-  <!-- Back to top -->
-  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
+  <!-- Back To Top -->
+  <button
+    class="back-to-top"
+    id="backToTop"
+    type="button"
+    aria-label="Back to top"
+  >
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <!-- Toast -->
+  <!-- Toast Message -->
   <div class="toast" id="toast" role="status" aria-live="polite">
     <div class="toast-icon">
       <i class="fas fa-check-circle"></i>
     </div>
+
     <div class="toast-message">
       <h4>Success!</h4>
       <p id="toastText">Your details were sent successfully.</p>
     </div>
   </div>
 
+  <!-- Main JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
