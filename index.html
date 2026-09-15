@@ -11,15 +11,16 @@
 
   <title>JJJ SkillForge Academy | Learn • Build • Grow</title>
 
-  <!-- Google Font -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <!-- Font Awesome Icons -->
+  <!-- Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -30,28 +31,42 @@
 </head>
 
 <body>
-  <!-- =========================
+  <!-- ========================================
        Loading Screen
-       ========================= -->
+       ======================================== -->
   <div class="loader" id="loader">
     <div class="loader-content">
-      <div class="loader-logo">JJJ</div>
+      <div class="loader-logo-wrap">
+        <div class="loader-logo-ring ring-one"></div>
+        <div class="loader-logo-ring ring-two"></div>
+
+        <div class="loader-logo-box">
+          <!-- Add your academy logo: images/logo.png -->
+          <img src="images/logo.png" alt="JJJ SkillForge Academy Logo">
+        </div>
+      </div>
+
+      <h2>JJJ SkillForge Academy</h2>
+      <p class="loader-tagline">Learn • Build • Grow</p>
 
       <div class="loader-bar">
         <div class="loader-progress"></div>
       </div>
 
-      <p>Loading your learning journey...</p>
+      <p class="loader-text">Preparing your learning experience...</p>
     </div>
   </div>
 
-  <!-- =========================
+  <!-- ========================================
        Navigation
-       ========================= -->
+       ======================================== -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#home" class="nav-logo" aria-label="JJJ SkillForge Academy Home">
-        <div class="logo-icon">J</div>
+        <div class="logo-icon logo-image-box">
+          <!-- Add your academy logo: images/logo.png -->
+          <img src="images/logo.png" alt="JJJ SkillForge Academy Logo">
+        </div>
 
         <div class="logo-text">
           <h3>JJJ SkillForge</h3>
@@ -88,20 +103,22 @@
   </nav>
 
   <main>
-    <!-- =========================
+    <!-- ========================================
          Hero Section
-         ========================= -->
+         ======================================== -->
     <section class="hero" id="home">
       <div class="hero-bg-animation" aria-hidden="true">
         <div class="floating-shape shape-1"></div>
         <div class="floating-shape shape-2"></div>
         <div class="floating-shape shape-3"></div>
         <div class="floating-shape shape-4"></div>
+        <div class="grid-lines"></div>
       </div>
 
       <div class="hero-container">
         <div class="hero-content">
           <div class="hero-badge">
+            <span class="pulse-dot"></span>
             <i class="fas fa-rocket"></i>
             <span>Welcome to JJJ SkillForge Academy</span>
           </div>
@@ -165,33 +182,43 @@
           </div>
         </div>
 
+        <!-- Animated Tech Orbit -->
         <div class="hero-visual" aria-hidden="true">
-          <div class="code-window">
-            <div class="window-header">
-              <div class="window-dots">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-              </div>
+          <div class="skill-orbit">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit orbit-three"></div>
 
-              <span class="window-title">skillforge.js</span>
+            <div class="orbit-dot dot-one"></div>
+            <div class="orbit-dot dot-two"></div>
+            <div class="orbit-dot dot-three"></div>
+            <div class="orbit-dot dot-four"></div>
+
+            <div class="hero-center-logo">
+              <div class="hero-logo-glow"></div>
+
+              <!-- Add your academy logo: images/logo.png -->
+              <img src="images/logo.png" alt="">
             </div>
 
-            <div class="window-content">
-<pre><code><span class="code-keyword">const</span> <span class="code-variable">academy</span> = {
-  <span class="code-property">name</span>: <span class="code-string">"JJJ SkillForge"</span>,
-  <span class="code-property">mission</span>: <span class="code-string">"Learn • Build • Grow"</span>,
-  <span class="code-property">focus</span>: [
-    <span class="code-string">"Skills"</span>,
-    <span class="code-string">"Projects"</span>,
-    <span class="code-string">"Careers"</span>
-  ],
-  <span class="code-property">start</span>: <span class="code-function">function</span>() {
-    <span class="code-keyword">return</span> <span class="code-string">"Your journey begins!"</span>;
-  }
-};
+            <div class="orbit-label label-html">
+              <i class="fa-brands fa-html5"></i>
+              <span>HTML</span>
+            </div>
 
-<span class="code-variable">academy</span>.<span class="code-function">start</span>();</code></pre>
+            <div class="orbit-label label-css">
+              <i class="fa-brands fa-css3-alt"></i>
+              <span>CSS</span>
+            </div>
+
+            <div class="orbit-label label-js">
+              <i class="fa-brands fa-js"></i>
+              <span>JavaScript</span>
+            </div>
+
+            <div class="orbit-label label-ai">
+              <i class="fas fa-robot"></i>
+              <span>AI</span>
             </div>
           </div>
 
@@ -216,13 +243,14 @@
         <div class="mouse">
           <div class="wheel"></div>
         </div>
+
         <p>Scroll Down</p>
       </div>
     </section>
 
-    <!-- =========================
+    <!-- ========================================
          About Section
-         ========================= -->
+         ======================================== -->
     <section class="about section" id="about">
       <div class="container">
         <div class="section-header">
@@ -327,9 +355,9 @@
       </div>
     </section>
 
-    <!-- =========================
+    <!-- ========================================
          Courses Section
-         ========================= -->
+         ======================================== -->
     <section class="courses section" id="courses">
       <div class="container">
         <div class="section-header">
@@ -346,6 +374,7 @@
           </p>
         </div>
 
+        <!-- Fees -->
         <div class="pricing-banner">
           <div class="pricing-item">
             <i class="fas fa-file-signature"></i>
@@ -380,7 +409,7 @@
         </div>
 
         <div class="courses-grid">
-          <!-- Basic Computer Skills -->
+          <!-- Course 1 -->
           <article class="course-card glass-card">
             <div class="course-icon">
               <i class="fas fa-desktop"></i>
@@ -418,7 +447,7 @@
             </div>
           </article>
 
-          <!-- Frontend Development -->
+          <!-- Course 2 -->
           <article class="course-card glass-card">
             <div class="course-icon">
               <i class="fas fa-code"></i>
@@ -456,7 +485,7 @@
             </div>
           </article>
 
-          <!-- Portfolio & Resume -->
+          <!-- Course 3 -->
           <article class="course-card glass-card">
             <div class="course-icon">
               <i class="fas fa-address-card"></i>
@@ -494,7 +523,7 @@
             </div>
           </article>
 
-          <!-- PPT & Presentation -->
+          <!-- Course 4 -->
           <article class="course-card glass-card">
             <div class="course-icon">
               <i class="fas fa-file-powerpoint"></i>
@@ -531,7 +560,7 @@
             </div>
           </article>
 
-          <!-- Beginner AI & Data -->
+          <!-- Course 5 -->
           <article class="course-card glass-card">
             <div class="course-icon">
               <i class="fas fa-robot"></i>
@@ -571,9 +600,9 @@
       </div>
     </section>
 
-    <!-- =========================
-         Why Choose Us
-         ========================= -->
+    <!-- ========================================
+         Why Choose Us Section
+         ======================================== -->
     <section class="why-us section" id="why-us">
       <div class="container">
         <div class="section-header">
@@ -594,7 +623,6 @@
             <div class="why-icon">
               <i class="fas fa-hand-holding-heart"></i>
             </div>
-
             <h3>Practical Learning</h3>
             <p>Build understanding through exercises and practical tasks, not theory alone.</p>
           </article>
@@ -603,7 +631,6 @@
             <div class="why-icon">
               <i class="fas fa-diagram-project"></i>
             </div>
-
             <h3>Hands-on Projects</h3>
             <p>Apply your learning by creating projects that demonstrate your growing skills.</p>
           </article>
@@ -612,7 +639,6 @@
             <div class="why-icon">
               <i class="fas fa-chalkboard-user"></i>
             </div>
-
             <h3>Easy Teaching</h3>
             <p>Learn challenging topics through simple and structured explanations.</p>
           </article>
@@ -621,7 +647,6 @@
             <div class="why-icon">
               <i class="fas fa-laptop-code"></i>
             </div>
-
             <h3>Modern Digital Skills</h3>
             <p>Explore relevant tools and digital skills useful in modern learning and work.</p>
           </article>
@@ -630,7 +655,6 @@
             <div class="why-icon">
               <i class="fas fa-briefcase"></i>
             </div>
-
             <h3>Career Preparation</h3>
             <p>Build portfolios, confidence, and practical skills for your next opportunity.</p>
           </article>
@@ -639,7 +663,6 @@
             <div class="why-icon">
               <i class="fas fa-people-group"></i>
             </div>
-
             <h3>Supportive Environment</h3>
             <p>Ask questions, practice consistently, and learn with encouraging guidance.</p>
           </article>
@@ -647,9 +670,9 @@
       </div>
     </section>
 
-    <!-- =========================
-         Learning Process
-         ========================= -->
+    <!-- ========================================
+         Learning Process Section
+         ======================================== -->
     <section class="process section" id="process">
       <div class="container">
         <div class="section-header">
@@ -667,9 +690,11 @@
         <div class="process-timeline">
           <div class="process-step">
             <div class="step-number">1</div>
+
             <div class="step-icon">
               <i class="fas fa-book-open"></i>
             </div>
+
             <h3>Learn</h3>
             <p>Understand key concepts through clear lessons and demonstrations.</p>
           </div>
@@ -680,9 +705,11 @@
 
           <div class="process-step">
             <div class="step-number">2</div>
+
             <div class="step-icon">
               <i class="fas fa-keyboard"></i>
             </div>
+
             <h3>Practice</h3>
             <p>Improve through guided activities, exercises, and consistent practice.</p>
           </div>
@@ -693,9 +720,11 @@
 
           <div class="process-step">
             <div class="step-number">3</div>
+
             <div class="step-icon">
               <i class="fas fa-code"></i>
             </div>
+
             <h3>Build</h3>
             <p>Create useful work that helps demonstrate your skills and progress.</p>
           </div>
@@ -706,9 +735,11 @@
 
           <div class="process-step">
             <div class="step-number">4</div>
+
             <div class="step-icon">
               <i class="fas fa-chart-line"></i>
             </div>
+
             <h3>Grow</h3>
             <p>Use your skills confidently in education, projects, and career opportunities.</p>
           </div>
@@ -716,9 +747,9 @@
       </div>
     </section>
 
-    <!-- =========================
+    <!-- ========================================
          Registration Section
-         ========================= -->
+         ======================================== -->
     <section class="registration section" id="registration">
       <div class="container">
         <div class="section-header">
@@ -924,7 +955,9 @@
 
                 <p>
                   <i class="fas fa-envelope"></i>
-                  <a href="mailto:jeyabelvin005@gmail.com">jeyabelvin005@gmail.com</a>
+                  <a href="mailto:jeyabelvin005@gmail.com">
+                    jeyabelvin005@gmail.com
+                  </a>
                 </p>
               </div>
             </div>
@@ -933,9 +966,9 @@
       </div>
     </section>
 
-    <!-- =========================
+    <!-- ========================================
          Payment Section
-         ========================= -->
+         ======================================== -->
     <section class="payment section" id="payment">
       <div class="container">
         <div class="section-header">
@@ -984,8 +1017,8 @@
             <div class="upi-details">
               <span>UPI ID</span>
 
-              <!-- IMPORTANT: Replace with your actual UPI ID -->
-              <strong id="upiIdText">jebakumar.s.81@okhdfcbank</strong>
+              <!-- IMPORTANT: Replace this with your actual UPI ID -->
+              <strong id="upiIdText">your-upi-id@bank</strong>
 
               <button type="button" class="copy-upi-btn" id="copyUpiBtn">
                 <i class="fas fa-copy"></i>
@@ -1005,7 +1038,7 @@
 
           <div class="qr-wrapper">
             <div class="qr-card">
-              <!-- Put your actual QR image here: images/payment-qr.png -->
+              <!-- Put your QR image at images/payment-qr.png -->
               <img
                 src="images/payment-qr.png"
                 alt="JJJ SkillForge Academy UPI payment QR code"
@@ -1017,7 +1050,7 @@
           </div>
         </div>
 
-        <!-- Payment Confirmation Form -->
+        <!-- Payment Confirmation -->
         <div class="payment-confirmation glass-card">
           <div class="payment-confirmation-header">
             <i class="fas fa-receipt"></i>
@@ -1116,15 +1149,15 @@
 
           <p class="payment-verification-text">
             Payment status is <strong>Pending Verification</strong> until the academy
-            confirms the amount has been received in its UPI or bank account.
+            confirms the payment has been received.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- =========================
-         Contact Section
-         ========================= -->
+    <!-- ========================================
+         Contact Section - No Message Form
+         ======================================== -->
     <section class="contact section" id="contact">
       <div class="container">
         <div class="section-header">
@@ -1135,161 +1168,115 @@
           </h2>
 
           <p class="section-subtitle">
-            Ask a question, enquire about a course, or contact us through the details below.
+            Contact JJJ SkillForge Academy for course details, registration support,
+            fees, batches, and learning guidance.
           </p>
         </div>
 
-        <div class="contact-container">
-          <div class="contact-info">
-            <div class="contact-card glass-card">
-              <div class="contact-icon">
-                <i class="fas fa-phone-alt"></i>
-              </div>
-
-              <div class="contact-details">
-                <h3>Phone</h3>
-                <p><a href="tel:8825461007">8825461007</a></p>
-              </div>
+        <div class="contact-only-container">
+          <div class="contact-card glass-card">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
             </div>
 
-            <div class="contact-card glass-card">
-              <div class="contact-icon">
-                <i class="fas fa-envelope"></i>
-              </div>
-
-              <div class="contact-details">
-                <h3>Email</h3>
-                <p>
-                  <a href="mailto:jeyabelvin005@gmail.com">
-                    jeyabelvin005@gmail.com
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            <div class="contact-card glass-card">
-              <div class="contact-icon">
-                <i class="fab fa-linkedin"></i>
-              </div>
-
-              <div class="contact-details">
-                <h3>LinkedIn</h3>
-                <p>
-                  <a
-                    href="https://www.linkedin.com/in/jeya-belvin-334281367/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Connect on LinkedIn
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            <div class="contact-card glass-card">
-              <div class="contact-icon">
-                <i class="fab fa-github"></i>
-              </div>
-
-              <div class="contact-details">
-                <h3>GitHub</h3>
-                <p>
-                  <a
-                    href="https://github.com/jeyabelvin005-sketch/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Visit GitHub Profile
-                  </a>
-                </p>
-              </div>
+            <div class="contact-details">
+              <h3>Phone</h3>
+              <p><a href="tel:8825461007">8825461007</a></p>
             </div>
           </div>
 
-          <div class="contact-form-container glass-card">
-            <h3>Send us a Message</h3>
+          <div class="contact-card glass-card">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
 
-            <form class="contact-form" id="contactForm">
-              <div class="form-group">
-                <label for="contactName">
-                  <i class="fas fa-user"></i>
-                  Your Name *
-                </label>
+            <div class="contact-details">
+              <h3>Email</h3>
+              <p>
+                <a href="mailto:jeyabelvin005@gmail.com">
+                  jeyabelvin005@gmail.com
+                </a>
+              </p>
+            </div>
+          </div>
 
-                <input
-                  type="text"
-                  id="contactName"
-                  name="contactName"
-                  placeholder="Enter your name"
-                  required
+          <div class="contact-card glass-card">
+            <div class="contact-icon">
+              <i class="fab fa-linkedin"></i>
+            </div>
+
+            <div class="contact-details">
+              <h3>LinkedIn</h3>
+              <p>
+                <a
+                  href="https://www.linkedin.com/in/jeya-belvin-334281367/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-              </div>
+                  Connect on LinkedIn
+                </a>
+              </p>
+            </div>
+          </div>
 
-              <div class="form-group">
-                <label for="contactEmail">
-                  <i class="fas fa-envelope"></i>
-                  Email Address *
-                </label>
+          <div class="contact-card glass-card">
+            <div class="contact-icon">
+              <i class="fab fa-github"></i>
+            </div>
 
-                <input
-                  type="email"
-                  id="contactEmail"
-                  name="contactEmail"
-                  placeholder="Enter your email"
-                  required
+            <div class="contact-details">
+              <h3>GitHub</h3>
+              <p>
+                <a
+                  href="https://github.com/jeyabelvin005-sketch/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-              </div>
+                  Visit GitHub Profile
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
 
-              <div class="form-group">
-                <label for="contactPhone">
-                  <i class="fas fa-phone"></i>
-                  Phone Number
-                </label>
+        <div class="contact-cta glass-card">
+          <div class="contact-cta-icon">
+            <i class="fas fa-comments"></i>
+          </div>
 
-                <input
-                  type="tel"
-                  id="contactPhone"
-                  name="contactPhone"
-                  placeholder="Enter phone number"
-                  inputmode="numeric"
-                >
-              </div>
+          <div>
+            <h3>Ready to begin your learning journey?</h3>
+            <p>Call or email us for course information and registration assistance.</p>
+          </div>
 
-              <div class="form-group">
-                <label for="contactMessage">
-                  <i class="fas fa-comment"></i>
-                  Message *
-                </label>
+          <div class="contact-cta-buttons">
+            <a href="tel:8825461007" class="btn btn-primary">
+              <i class="fas fa-phone"></i>
+              Call Now
+            </a>
 
-                <textarea
-                  id="contactMessage"
-                  name="contactMessage"
-                  rows="5"
-                  placeholder="Type your message here..."
-                  required
-                ></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary btn-block">
-                <i class="fas fa-paper-plane"></i>
-                Send Message
-              </button>
-            </form>
+            <a href="mailto:jeyabelvin005@gmail.com" class="btn btn-secondary">
+              <i class="fas fa-envelope"></i>
+              Email Us
+            </a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- =========================
+  <!-- ========================================
        Footer
-       ========================= -->
+       ======================================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
           <a href="#home" class="footer-logo" aria-label="Back to Home">
-            <div class="logo-icon">J</div>
+            <div class="logo-icon logo-image-box">
+              <!-- Add your academy logo: images/logo.png -->
+              <img src="images/logo.png" alt="JJJ SkillForge Academy Logo">
+            </div>
 
             <div class="logo-text">
               <h3>JJJ SkillForge</h3>
@@ -1413,7 +1400,7 @@
     </div>
   </footer>
 
-  <!-- Back To Top -->
+  <!-- Back-to-top button -->
   <button
     class="back-to-top"
     id="backToTop"
@@ -1423,7 +1410,7 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <!-- Toast Message -->
+  <!-- Toast message -->
   <div class="toast" id="toast" role="status" aria-live="polite">
     <div class="toast-icon">
       <i class="fas fa-check-circle"></i>
