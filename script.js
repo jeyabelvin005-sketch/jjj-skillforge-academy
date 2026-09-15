@@ -5,10 +5,7 @@
 
 /*
   Your Google Apps Script Web App URL.
-
   It must end with /exec.
-
-  Keep your own deployed URL here.
 */
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxG-rbeR0rBqOwBT6Wi3MELYkaLZHreqZZX8aYonx_kGbZ0t-ucPGVSVDGoAZfwOMc6/exec";
@@ -25,7 +22,6 @@ const loader = document.getElementById("loader");
 const backToTopBtn = document.getElementById("backToTop");
 
 const registrationForm = document.getElementById("registrationForm");
-const contactForm = document.getElementById("contactForm");
 const paymentForm = document.getElementById("paymentForm");
 
 const toast = document.getElementById("toast");
@@ -51,11 +47,11 @@ window.addEventListener("load", () => {
     if (loader) {
       loader.classList.add("hidden");
     }
-  }, 900);
+  }, 1700);
 });
 
 /* ========================================
-   Navbar / Scroll Features
+   Sticky Navbar / Scroll Features
    ======================================== */
 
 function handleScroll() {
@@ -68,7 +64,6 @@ function handleScroll() {
   }
 
   updateActiveNavigation();
-  handleHeroParallax();
 }
 
 window.addEventListener("scroll", handleScroll);
@@ -92,14 +87,6 @@ function updateActiveNavigation() {
       navLink.classList.add("active");
     }
   });
-}
-
-function handleHeroParallax() {
-  const heroVisual = document.querySelector(".hero-visual");
-
-  if (heroVisual && window.scrollY < window.innerHeight) {
-    heroVisual.style.transform = `translateY(${window.scrollY * 0.12}px)`;
-  }
 }
 
 /* ========================================
@@ -147,7 +134,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 /* ========================================
-   Smooth Anchor Scrolling
+   Smooth Scrolling
    ======================================== */
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -187,11 +174,11 @@ if (backToTopBtn) {
 }
 
 /* ========================================
-   Scroll Reveal Animation
+   Scroll Reveal Animations
    ======================================== */
 
 const revealElements = document.querySelectorAll(
-  ".about-card, .highlight-item, .course-card, .why-card, .process-step, .registration-form-container, .info-card, .payment-container, .payment-confirmation, .contact-card, .contact-form-container"
+  ".about-card, .highlight-item, .course-card, .why-card, .process-step, .registration-form-container, .info-card, .payment-container, .payment-confirmation, .contact-card, .contact-cta"
 );
 
 if ("IntersectionObserver" in window) {
@@ -221,7 +208,7 @@ if ("IntersectionObserver" in window) {
 }
 
 /* ========================================
-   Animated Counter
+   Animated Course Counter
    ======================================== */
 
 function animateCounter(counterElement) {
@@ -267,7 +254,7 @@ if (heroSection && "IntersectionObserver" in window) {
 }
 
 /* ========================================
-   Toast Notification
+   Toast Notifications
    ======================================== */
 
 let toastTimer;
@@ -334,21 +321,19 @@ function isValidPhone(phone) {
 }
 
 /* ========================================
-   Send Form Data to Google Sheets
+   Google Sheets Submission
    ======================================== */
 
 /*
-  IMPORTANT:
+  This sends regular form-style data.
 
-  This sends form data as URLSearchParams and uses no-cors.
+  Do NOT add:
+  Content-Type: application/json
 
-  Do not use:
-  headers: { "Content-Type": "application/json" }
+  The "no-cors" option avoids browser CORS preflight errors
+  with a Google Apps Script Web App.
 
-  JSON requests can trigger a browser CORS preflight error with
-  a Google Apps Script Web App.
-
-  In Apps Script use:
+  Your Google Apps Script must use:
   const data = e.parameter;
 */
 async function sendToGoogleSheets(data) {
@@ -381,7 +366,7 @@ courseEnrollButtons.forEach((button) => {
 });
 
 /* ========================================
-   Registration Fee Summary
+   Fee Summary
    ======================================== */
 
 function updateFeeSummary() {
@@ -403,7 +388,7 @@ if (registrationCourse) {
 }
 
 /* ========================================
-   Registration Form Submission
+   Registration Form
    ======================================== */
 
 if (registrationForm) {
@@ -599,88 +584,7 @@ if (paymentForm) {
 }
 
 /* ========================================
-   Contact Form Submission
-   ======================================== */
-
-if (contactForm) {
-  contactForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const name = document.getElementById("contactName").value.trim();
-    const email = document.getElementById("contactEmail").value.trim();
-    const phone = document.getElementById("contactPhone").value.trim();
-    const message = document.getElementById("contactMessage").value.trim();
-
-    if (!name) {
-      showToast("Please enter your name.", "error");
-      document.getElementById("contactName").focus();
-      return;
-    }
-
-    if (!isValidEmail(email)) {
-      showToast("Please enter a valid email address.", "error");
-      document.getElementById("contactEmail").focus();
-      return;
-    }
-
-    if (phone && !isValidPhone(phone)) {
-      showToast(
-        "Enter a valid 10-digit phone number or leave it blank.",
-        "error"
-      );
-      document.getElementById("contactPhone").focus();
-      return;
-    }
-
-    if (!message) {
-      showToast("Please enter your message.", "error");
-      document.getElementById("contactMessage").focus();
-      return;
-    }
-
-    const contactData = {
-      type: "contact",
-      name,
-      email,
-      phone,
-      message,
-    };
-
-    const submitButton = contactForm.querySelector(
-      'button[type="submit"]'
-    );
-
-    const originalText = submitButton.innerHTML;
-
-    submitButton.disabled = true;
-    submitButton.innerHTML =
-      '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-    try {
-      await sendToGoogleSheets(contactData);
-
-      contactForm.reset();
-
-      showToast(
-        "Your message was sent successfully. We will get back to you soon.",
-        "success"
-      );
-    } catch (error) {
-      console.error("Contact form error:", error);
-
-      showToast(
-        "The message could not be sent. Please try again.",
-        "error"
-      );
-    } finally {
-      submitButton.disabled = false;
-      submitButton.innerHTML = originalText;
-    }
-  });
-}
-
-/* ========================================
-   Copy UPI ID Button
+   Copy UPI ID
    ======================================== */
 
 if (copyUpiBtn && upiIdText) {
