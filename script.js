@@ -4,9 +4,11 @@
    ======================================== */
 
 /*
-  IMPORTANT:
-  This is your deployed Google Apps Script Web App URL.
+  Your Google Apps Script Web App URL.
+
   It must end with /exec.
+
+  Keep your own deployed URL here.
 */
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxG-rbeR0rBqOwBT6Wi3MELYkaLZHreqZZX8aYonx_kGbZ0t-ucPGVSVDGoAZfwOMc6/exec";
@@ -21,13 +23,22 @@ const hamburger = document.getElementById("hamburger");
 const navLinks = document.querySelectorAll(".nav-link");
 const loader = document.getElementById("loader");
 const backToTopBtn = document.getElementById("backToTop");
+
 const registrationForm = document.getElementById("registrationForm");
 const contactForm = document.getElementById("contactForm");
+const paymentForm = document.getElementById("paymentForm");
+
 const toast = document.getElementById("toast");
 const toastText = document.getElementById("toastText");
-const filterButtons = document.querySelectorAll(".filter-btn");
-const courseCards = document.querySelectorAll(".course-card");
+
 const counters = document.querySelectorAll(".counter");
+
+const courseEnrollButtons = document.querySelectorAll(".course-enroll-btn");
+const registrationCourse = document.getElementById("course");
+
+const selectedCourseFee = document.getElementById("selectedCourseFee");
+const totalPayable = document.getElementById("totalPayable");
+
 const copyUpiBtn = document.getElementById("copyUpiBtn");
 const upiIdText = document.getElementById("upiIdText");
 
@@ -101,6 +112,7 @@ if (hamburger && navMenu) {
 
     hamburger.classList.toggle("active", isOpen);
     hamburger.setAttribute("aria-expanded", String(isOpen));
+
     document.body.classList.toggle("menu-open", isOpen);
   });
 }
@@ -175,35 +187,11 @@ if (backToTopBtn) {
 }
 
 /* ========================================
-   Course Filter
-   ======================================== */
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const selectedCategory = button.dataset.filter;
-
-    filterButtons.forEach((filterButton) => {
-      filterButton.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
-    courseCards.forEach((card) => {
-      const category = card.dataset.category;
-      const shouldShow =
-        selectedCategory === "all" || selectedCategory === category;
-
-      card.classList.toggle("hidden", !shouldShow);
-    });
-  });
-});
-
-/* ========================================
-   Scroll Reveal
+   Scroll Reveal Animation
    ======================================== */
 
 const revealElements = document.querySelectorAll(
-  ".about-card, .highlight-item, .course-card, .why-card, .process-step, .registration-form-container, .info-card, .payment-container, .contact-card, .contact-form-container"
+  ".about-card, .highlight-item, .course-card, .why-card, .process-step, .registration-form-container, .info-card, .payment-container, .payment-confirmation, .contact-card, .contact-form-container"
 );
 
 if ("IntersectionObserver" in window) {
@@ -226,15 +214,14 @@ if ("IntersectionObserver" in window) {
   revealElements.forEach((element) => {
     element.style.opacity = "0";
     element.style.transform = "translateY(24px)";
-    element.style.transition =
-      "opacity 0.6s ease, transform 0.6s ease";
+    element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
 
     revealObserver.observe(element);
   });
 }
 
 /* ========================================
-   Hero Counter
+   Animated Counter
    ======================================== */
 
 function animateCounter(counterElement) {
@@ -271,21 +258,23 @@ if (heroSection && "IntersectionObserver" in window) {
         }
       });
     },
-    { threshold: 0.35 }
+    {
+      threshold: 0.35,
+    }
   );
 
   heroObserver.observe(heroSection);
 }
 
 /* ========================================
-   Toast Notifications
+   Toast Notification
    ======================================== */
 
 let toastTimer;
 
 function showToast(message, type = "success") {
   if (!toast || !toastText) {
-    window.alert(message);
+    alert(message);
     return;
   }
 
@@ -345,20 +334,22 @@ function isValidPhone(phone) {
 }
 
 /* ========================================
-   Google Sheets Submission
+   Send Form Data to Google Sheets
    ======================================== */
 
 /*
-  This sends URL-encoded form data.
+  IMPORTANT:
 
-  Do not change this to:
-  Content-Type: application/json
+  This sends form data as URLSearchParams and uses no-cors.
 
-  JSON usually triggers an OPTIONS preflight request.
-  Google Apps Script Web Apps do not handle that preflight in the
-  same way as a normal CORS API.
+  Do not use:
+  headers: { "Content-Type": "application/json" }
 
-  Apps Script receives these submitted fields through e.parameter.
+  JSON requests can trigger a browser CORS preflight error with
+  a Google Apps Script Web App.
+
+  In Apps Script use:
+  const data = e.parameter;
 */
 async function sendToGoogleSheets(data) {
   const encodedData = new URLSearchParams();
@@ -367,13 +358,6 @@ async function sendToGoogleSheets(data) {
     encodedData.append(key, value ?? "");
   });
 
-  /*
-    "no-cors" avoids browser blocking for a Google Apps Script Web App.
-    The request can be sent, but the browser cannot read the response.
-
-    Therefore, the website treats a completed fetch request as submitted.
-    Confirm actual saving by checking Google Sheets / Apps Script Executions.
-  */
   await fetch(API_URL, {
     method: "POST",
     mode: "no-cors",
@@ -382,7 +366,44 @@ async function sendToGoogleSheets(data) {
 }
 
 /* ========================================
-   Registration Form
+   Course Enroll Buttons
+   ======================================== */
+
+courseEnrollButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const selectedCourse = button.dataset.course;
+
+    if (registrationCourse && selectedCourse) {
+      registrationCourse.value = selectedCourse;
+      updateFeeSummary();
+    }
+  });
+});
+
+/* ========================================
+   Registration Fee Summary
+   ======================================== */
+
+function updateFeeSummary() {
+  if (!registrationCourse || !selectedCourseFee || !totalPayable) {
+    return;
+  }
+
+  if (registrationCourse.value) {
+    selectedCourseFee.textContent = "₹2,000";
+    totalPayable.textContent = "₹2,500";
+  } else {
+    selectedCourseFee.textContent = "₹0";
+    totalPayable.textContent = "₹500";
+  }
+}
+
+if (registrationCourse) {
+  registrationCourse.addEventListener("change", updateFeeSummary);
+}
+
+/* ========================================
+   Registration Form Submission
    ======================================== */
 
 if (registrationForm) {
@@ -427,7 +448,7 @@ if (registrationForm) {
       return;
     }
 
-    const formData = {
+    const registrationData = {
       type: "registration",
       studentName,
       phone,
@@ -436,11 +457,16 @@ if (registrationForm) {
       mode,
       batch,
       message,
+      registrationFee: "500",
+      courseFee: "2000",
+      totalPayable: "2500",
+      paymentStatus: "Not Paid / Pending",
     };
 
     const submitButton = registrationForm.querySelector(
       'button[type="submit"]'
     );
+
     const originalText = submitButton.innerHTML;
 
     submitButton.disabled = true;
@@ -448,12 +474,13 @@ if (registrationForm) {
       '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
     try {
-      await sendToGoogleSheets(formData);
+      await sendToGoogleSheets(registrationData);
 
       registrationForm.reset();
+      updateFeeSummary();
 
       showToast(
-        "Registration submitted successfully! We will contact you soon.",
+        "Registration submitted successfully. Please complete payment using the QR code.",
         "success"
       );
     } catch (error) {
@@ -471,7 +498,108 @@ if (registrationForm) {
 }
 
 /* ========================================
-   Contact Form
+   Payment Confirmation Form
+   ======================================== */
+
+if (paymentForm) {
+  paymentForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const studentName = document
+      .getElementById("paymentStudentName")
+      .value.trim();
+
+    const phone = document
+      .getElementById("paymentPhone")
+      .value.trim();
+
+    const course = document
+      .getElementById("paymentCourse")
+      .value;
+
+    const paymentAmount = document
+      .getElementById("paymentAmount")
+      .value;
+
+    const utrNumber = document
+      .getElementById("utrNumber")
+      .value.trim();
+
+    if (!studentName) {
+      showToast("Please enter the student name.", "error");
+      document.getElementById("paymentStudentName").focus();
+      return;
+    }
+
+    if (!isValidPhone(phone)) {
+      showToast("Please enter a valid 10-digit phone number.", "error");
+      document.getElementById("paymentPhone").focus();
+      return;
+    }
+
+    if (!course) {
+      showToast("Please select the course.", "error");
+      document.getElementById("paymentCourse").focus();
+      return;
+    }
+
+    if (!paymentAmount) {
+      showToast("Please select the amount paid.", "error");
+      document.getElementById("paymentAmount").focus();
+      return;
+    }
+
+    if (!utrNumber) {
+      showToast("Please enter the UTR or transaction ID.", "error");
+      document.getElementById("utrNumber").focus();
+      return;
+    }
+
+    const paymentData = {
+      type: "payment_confirmation",
+      studentName,
+      phone,
+      course,
+      paymentAmount,
+      utrNumber,
+      paymentStatus: "Pending Verification",
+    };
+
+    const submitButton = paymentForm.querySelector(
+      'button[type="submit"]'
+    );
+
+    const originalText = submitButton.innerHTML;
+
+    submitButton.disabled = true;
+    submitButton.innerHTML =
+      '<i class="fas fa-spinner fa-spin"></i> Sending Payment Details...';
+
+    try {
+      await sendToGoogleSheets(paymentData);
+
+      paymentForm.reset();
+
+      showToast(
+        "Payment details submitted. The payment is pending academy verification.",
+        "success"
+      );
+    } catch (error) {
+      console.error("Payment confirmation error:", error);
+
+      showToast(
+        "Payment details could not be submitted. Please try again.",
+        "error"
+      );
+    } finally {
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalText;
+    }
+  });
+}
+
+/* ========================================
+   Contact Form Submission
    ======================================== */
 
 if (contactForm) {
@@ -510,7 +638,7 @@ if (contactForm) {
       return;
     }
 
-    const formData = {
+    const contactData = {
       type: "contact",
       name,
       email,
@@ -521,6 +649,7 @@ if (contactForm) {
     const submitButton = contactForm.querySelector(
       'button[type="submit"]'
     );
+
     const originalText = submitButton.innerHTML;
 
     submitButton.disabled = true;
@@ -528,12 +657,12 @@ if (contactForm) {
       '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
     try {
-      await sendToGoogleSheets(formData);
+      await sendToGoogleSheets(contactData);
 
       contactForm.reset();
 
       showToast(
-        "Your message was sent successfully! We will get back to you soon.",
+        "Your message was sent successfully. We will get back to you soon.",
         "success"
       );
     } catch (error) {
@@ -551,7 +680,7 @@ if (contactForm) {
 }
 
 /* ========================================
-   Copy UPI ID
+   Copy UPI ID Button
    ======================================== */
 
 if (copyUpiBtn && upiIdText) {
@@ -566,12 +695,14 @@ if (copyUpiBtn && upiIdText) {
     try {
       await navigator.clipboard.writeText(upiId);
 
-      copyUpiBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
+      copyUpiBtn.innerHTML =
+        '<i class="fas fa-check"></i> Copied';
 
       showToast("UPI ID copied successfully.", "success");
 
       setTimeout(() => {
-        copyUpiBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+        copyUpiBtn.innerHTML =
+          '<i class="fas fa-copy"></i> Copy';
       }, 2000);
     } catch (error) {
       console.error("Clipboard error:", error);
