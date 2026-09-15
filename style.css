@@ -25,7 +25,6 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 18px;
-  --radius-xl: 28px;
 
   --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.45);
@@ -149,7 +148,9 @@ textarea {
   transform: translateY(-5px);
 }
 
-/* Buttons */
+/* ========================================
+   Buttons
+   ======================================== */
 
 .btn {
   display: inline-flex;
@@ -211,7 +212,9 @@ textarea {
   width: 100%;
 }
 
-/* Loader */
+/* ========================================
+   Loader
+   ======================================== */
 
 .loader {
   position: fixed;
@@ -279,7 +282,9 @@ textarea {
   }
 }
 
-/* Navbar */
+/* ========================================
+   Navbar
+   ======================================== */
 
 .navbar {
   position: fixed;
@@ -392,7 +397,9 @@ textarea {
   transition: all var(--transition);
 }
 
-/* Hero */
+/* ========================================
+   Hero
+   ======================================== */
 
 .hero {
   position: relative;
@@ -725,7 +732,9 @@ textarea {
   }
 }
 
-/* About */
+/* ========================================
+   About
+   ======================================== */
 
 .about,
 .why-us,
@@ -863,7 +872,9 @@ textarea {
   font-size: 12px;
 }
 
-/* Courses */
+/* ========================================
+   Courses and Pricing
+   ======================================== */
 
 .courses,
 .process,
@@ -871,31 +882,59 @@ textarea {
   background: var(--bg-dark);
 }
 
-.course-filters {
+.pricing-banner {
   display: flex;
-  gap: 10px;
+  max-width: 950px;
+  gap: 25px;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 37px;
+  margin: 0 auto 42px;
+  padding: 20px 25px;
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  border-radius: 18px;
+  background: rgba(99, 102, 241, 0.07);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
-.filter-btn {
-  padding: 9px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.03);
+.pricing-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.pricing-item > i {
+  display: grid;
+  width: 47px;
+  height: 47px;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.14);
+  color: var(--primary-light);
+  font-size: 19px;
+}
+
+.pricing-item div {
+  display: grid;
+}
+
+.pricing-item span {
   color: var(--text-secondary);
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all var(--transition);
+  font-size: 12px;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
-  border-color: transparent;
-  background: var(--gradient-primary);
-  color: #ffffff;
+.pricing-item strong {
+  color: var(--text-primary);
+  font-size: 22px;
+}
+
+.pricing-item.total-fee strong {
+  color: var(--secondary);
+}
+
+.pricing-divider {
+  width: 1px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.13);
 }
 
 .courses-grid {
@@ -907,14 +946,10 @@ textarea {
 .course-card {
   position: relative;
   display: flex;
-  min-height: 370px;
+  min-height: 390px;
   flex-direction: column;
   padding: 27px;
   overflow: hidden;
-}
-
-.course-card.hidden {
-  display: none;
 }
 
 .course-card::before {
@@ -1001,15 +1036,18 @@ textarea {
   border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.course-duration {
+.course-fee {
   display: inline-flex;
-  gap: 6px;
+  gap: 5px;
   align-items: center;
-  color: var(--text-muted);
-  font-size: 12px;
+  color: var(--secondary);
+  font-size: 13px;
+  font-weight: 700;
 }
 
-/* Why us */
+/* ========================================
+   Why Us
+   ======================================== */
 
 .why-grid {
   display: grid;
@@ -1046,7 +1084,9 @@ textarea {
   line-height: 1.75;
 }
 
-/* Process */
+/* ========================================
+   Learning Process
+   ======================================== */
 
 .process-timeline {
   position: relative;
@@ -1114,7 +1154,9 @@ textarea {
   flex-shrink: 0;
 }
 
-/* Forms */
+/* ========================================
+   Forms
+   ======================================== */
 
 .registration-container {
   display: grid;
@@ -1198,6 +1240,44 @@ textarea {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.13);
 }
 
+/* Fee Summary */
+
+.fee-summary {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid rgba(129, 140, 248, 0.22);
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.06);
+}
+
+.fee-summary > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.fee-summary strong {
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.fee-summary .fee-total {
+  margin-top: 4px;
+  padding-top: 11px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.fee-summary .fee-total strong {
+  color: var(--secondary);
+  font-size: 18px;
+}
+
 .registration-info {
   display: grid;
   gap: 20px;
@@ -1247,7 +1327,9 @@ textarea {
   text-decoration: none;
 }
 
-/* Payment */
+/* ========================================
+   Payment
+   ======================================== */
 
 .payment-container {
   position: relative;
@@ -1297,6 +1379,43 @@ textarea {
 .payment-content h3 {
   margin-bottom: 10px;
   font-size: 27px;
+}
+
+.payment-price-list {
+  display: grid;
+  gap: 9px;
+  max-width: 440px;
+  margin-bottom: 20px;
+  padding: 16px;
+  border: 1px solid rgba(129, 140, 248, 0.24);
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.06);
+}
+
+.payment-price-list > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.payment-price-list strong {
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.payment-price-list .payment-total {
+  margin-top: 5px;
+  padding-top: 11px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.payment-price-list .payment-total strong {
+  color: var(--secondary);
+  font-size: 19px;
 }
 
 .payment-description {
@@ -1406,7 +1525,67 @@ textarea {
   font-weight: 500;
 }
 
-/* Contact */
+/* Payment Confirmation Form */
+
+.payment-confirmation {
+  max-width: 970px;
+  margin: 30px auto 0;
+  padding: 32px;
+}
+
+.payment-confirmation-header {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.payment-confirmation-header > i {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--primary-light);
+  font-size: 24px;
+}
+
+.payment-confirmation-header h3 {
+  margin-bottom: 3px;
+  font-size: 22px;
+}
+
+.payment-confirmation-header p {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.payment-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.payment-utr-group,
+.payment-submit-group {
+  grid-column: 1 / -1;
+}
+
+.payment-verification-text {
+  margin-top: 18px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.payment-verification-text strong {
+  color: #fbbf24;
+}
+
+/* ========================================
+   Contact
+   ======================================== */
 
 .contact-container {
   display: grid;
@@ -1463,7 +1642,9 @@ textarea {
   font-size: 23px;
 }
 
-/* Footer */
+/* ========================================
+   Footer
+   ======================================== */
 
 .footer {
   padding: 75px 0 25px;
@@ -1573,7 +1754,9 @@ textarea {
   font-size: 12px;
 }
 
-/* Back-to-top */
+/* ========================================
+   Back to Top
+   ======================================== */
 
 .back-to-top {
   position: fixed;
@@ -1602,7 +1785,9 @@ textarea {
   visibility: visible;
 }
 
-/* Toast */
+/* ========================================
+   Toast
+   ======================================== */
 
 .toast {
   position: fixed;
@@ -1654,7 +1839,9 @@ textarea {
   line-height: 1.55;
 }
 
-/* Responsive */
+/* ========================================
+   Responsive
+   ======================================== */
 
 @media (max-width: 1120px) {
   .nav-link {
@@ -1758,6 +1945,11 @@ textarea {
     margin-left: auto;
   }
 
+  .payment-price-list {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .upi-details {
     justify-content: center;
   }
@@ -1772,6 +1964,31 @@ textarea {
 
   .payment-note {
     text-align: left;
+  }
+}
+
+@media (max-width: 800px) {
+  .pricing-banner {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .pricing-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .pricing-item {
+    justify-content: center;
+  }
+
+  .payment-form {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-utr-group,
+  .payment-submit-group {
+    grid-column: auto;
   }
 }
 
@@ -1874,7 +2091,8 @@ textarea {
 
   .registration-form-container,
   .contact-form-container,
-  .payment-container {
+  .payment-container,
+  .payment-confirmation {
     padding: 24px;
   }
 
