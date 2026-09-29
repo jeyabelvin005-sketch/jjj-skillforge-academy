@@ -32,9 +32,6 @@ const counters = document.querySelectorAll(".counter");
 const courseEnrollButtons = document.querySelectorAll(".course-enroll-btn");
 const registrationCourse = document.getElementById("course");
 
-const selectedCourseFee = document.getElementById("selectedCourseFee");
-const totalPayable = document.getElementById("totalPayable");
-
 const copyUpiBtn = document.getElementById("copyUpiBtn");
 const upiIdText = document.getElementById("upiIdText");
 
@@ -348,32 +345,9 @@ courseEnrollButtons.forEach((button) => {
 
     if (registrationCourse && selectedCourse) {
       registrationCourse.value = selectedCourse;
-      updateFeeSummary();
     }
   });
 });
-
-/* ========================================
-   Fee Summary
-   ======================================== */
-
-function updateFeeSummary() {
-  if (!registrationCourse || !selectedCourseFee || !totalPayable) {
-    return;
-  }
-
-  if (registrationCourse.value) {
-    selectedCourseFee.textContent = "₹2,000";
-    totalPayable.textContent = "₹2,500";
-  } else {
-    selectedCourseFee.textContent = "₹0";
-    totalPayable.textContent = "₹500";
-  }
-}
-
-if (registrationCourse) {
-  registrationCourse.addEventListener("change", updateFeeSummary);
-}
 
 /* ========================================
    Registration Form
@@ -437,9 +411,10 @@ if (registrationForm) {
       batch,
       message,
       registrationFee: "500",
-      courseFee: "2000",
-      totalPayable: "2500",
-      paymentStatus: "Not Paid / Pending",
+      courseFee: "1500",
+      totalPayable: "2000",
+      amountToPayNow: "500",
+      paymentStatus: "Registration Fee Pending",
     };
 
     const submitButton = registrationForm.querySelector(
@@ -456,10 +431,9 @@ if (registrationForm) {
       await sendToGoogleSheets(registrationData);
 
       registrationForm.reset();
-      updateFeeSummary();
 
       showToast(
-        "Registration submitted successfully. Please complete payment using the QR code.",
+        "Registration submitted! Please check your email and SMS for confirmation.",
         "success"
       );
     } catch (error) {
