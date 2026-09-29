@@ -433,8 +433,8 @@ if (registrationForm) {
       registrationForm.reset();
 
       showToast(
-        "Registration submitted! Please check your email and SMS for confirmation.",
-        "success"
+  "You have been successfully registered! A confirmation email has been sent to your inbox.",
+  "success"
       );
     } catch (error) {
       console.error("Registration form error:", error);
