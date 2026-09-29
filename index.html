@@ -41,7 +41,6 @@
         <div class="loader-logo-ring ring-two"></div>
 
         <div class="loader-logo-box">
-          <!-- Add your academy logo: images/logo.png -->
           <img src="images/logo.png" alt="JJJ SkillForge Academy Logo">
         </div>
       </div>
@@ -64,7 +63,6 @@
     <div class="nav-container">
       <a href="#home" class="nav-logo" aria-label="JJJ SkillForge Academy Home">
         <div class="logo-icon logo-image-box">
-          <!-- Add your academy logo: images/logo.png -->
           <img src="images/logo.png" alt="JJJ SkillForge Academy Logo">
         </div>
 
@@ -196,8 +194,6 @@
 
             <div class="hero-center-logo">
               <div class="hero-logo-glow"></div>
-
-              <!-- Add your academy logo: images/logo.png -->
               <img src="images/logo.png" alt="">
             </div>
 
@@ -870,20 +866,42 @@
                 </div>
               </div>
 
+              <!-- ==============================
+                   UPDATED: Preferred Batch
+                   Saturday / Sunday Only
+                   ============================== -->
               <div class="form-row">
                 <div class="form-group">
                   <label for="batch">
                     <i class="fas fa-calendar"></i>
-                    Preferred Batch
+                    Preferred Batch (Saturday / Sunday Only) *
                   </label>
 
-                  <select id="batch" name="batch">
-                    <option value="">Select preferred batch...</option>
-                    <option value="Morning">Morning (9 AM - 12 PM)</option>
-                    <option value="Afternoon">Afternoon (12 PM - 3 PM)</option>
-                    <option value="Evening">Evening (3 PM - 6 PM)</option>
-                    <option value="Weekend">Weekend (Saturday - Sunday)</option>
+                  <select id="batch" name="batch" required>
+                    <option value="">Select your class day &amp; time...</option>
+
+                    <option value="Saturday - 12:00 PM to 2:00 PM">
+                      Saturday — 12:00 PM to 2:00 PM
+                    </option>
+
+                    <option value="Saturday - 5:00 PM to 7:00 PM (School Students)">
+                      Saturday — 5:00 PM to 7:00 PM (For school students who can't attend day class)
+                    </option>
+
+                    <option value="Sunday - 12:00 PM to 2:00 PM">
+                      Sunday — 12:00 PM to 2:00 PM
+                    </option>
                   </select>
+
+                  <p class="batch-note">
+                    <i class="fas fa-circle-info"></i>
+                    <span>
+                      Classes are conducted only on <strong>Saturday</strong> and
+                      <strong>Sunday</strong>. If you're unable to attend the
+                      Saturday 12 PM – 2 PM slot due to school, please choose the
+                      <strong>Saturday 5 PM – 7 PM</strong> batch.
+                    </span>
+                  </p>
                 </div>
               </div>
 
@@ -937,6 +955,17 @@
               <p><strong>Registration Fee:</strong> ₹500</p>
               <p><strong>One Course Fee:</strong> ₹2,000</p>
               <p><strong>Total for New Student:</strong> ₹2,500</p>
+            </div>
+
+            <div class="info-card glass-card">
+              <h3>
+                <i class="fas fa-clock"></i>
+                Class Schedule
+              </h3>
+
+              <p><strong>Saturday:</strong> 12:00 PM – 2:00 PM</p>
+              <p><strong>Saturday (School Students):</strong> 5:00 PM – 7:00 PM</p>
+              <p><strong>Sunday:</strong> 12:00 PM – 2:00 PM</p>
             </div>
 
             <div class="info-card glass-card">
@@ -1038,7 +1067,6 @@
 
           <div class="qr-wrapper">
             <div class="qr-card">
-              <!-- Put your QR image at images/payment-qr.png -->
               <img
                 src="images/payment-qr.png"
                 alt="JJJ SkillForge Academy UPI payment QR code"
@@ -1156,7 +1184,7 @@
     </section>
 
     <!-- ========================================
-         Contact Section - No Message Form
+         Contact Section
          ======================================== -->
     <section class="contact section" id="contact">
       <div class="container">
@@ -1274,7 +1302,6 @@
         <div class="footer-brand">
           <a href="#home" class="footer-logo" aria-label="Back to Home">
             <div class="logo-icon logo-image-box">
-              <!-- Add your academy logo: images/logo.png -->
               <img src="images/logo.png" alt="JJJ SkillForge Academy Logo">
             </div>
 
