@@ -324,18 +324,6 @@ function isValidPhone(phone) {
    Google Sheets Submission
    ======================================== */
 
-/*
-  This sends regular form-style data.
-
-  Do NOT add:
-  Content-Type: application/json
-
-  The "no-cors" option avoids browser CORS preflight errors
-  with a Google Apps Script Web App.
-
-  Your Google Apps Script must use:
-  const data = e.parameter;
-*/
 async function sendToGoogleSheets(data) {
   const encodedData = new URLSearchParams();
 
@@ -430,6 +418,12 @@ if (registrationForm) {
     if (!mode) {
       showToast("Please select a learning mode.", "error");
       document.getElementById("mode").focus();
+      return;
+    }
+
+    if (!batch) {
+      showToast("Please select your preferred batch day & time.", "error");
+      document.getElementById("batch").focus();
       return;
     }
 
