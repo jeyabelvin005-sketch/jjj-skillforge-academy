@@ -3,16 +3,8 @@
    Main JavaScript
    ======================================== */
 
-/*
-  Your Google Apps Script Web App URL.
-  It must end with /exec.
-*/
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxG-rbeR0rBqOwBT6Wi3MELYkaLZHreqZZX8aYonx_kGbZ0t-ucPGVSVDGoAZfwOMc6/exec";
-
-/* ========================================
-   DOM Elements
-   ======================================== */
 
 const navbar = document.getElementById("navbar");
 const navMenu = document.getElementById("nav-menu");
@@ -28,38 +20,23 @@ const toast = document.getElementById("toast");
 const toastText = document.getElementById("toastText");
 
 const counters = document.querySelectorAll(".counter");
-
 const courseEnrollButtons = document.querySelectorAll(".course-enroll-btn");
 const registrationCourse = document.getElementById("course");
 
 const copyUpiBtn = document.getElementById("copyUpiBtn");
 const upiIdText = document.getElementById("upiIdText");
 
-/* ========================================
-   Loading Screen
-   ======================================== */
-
+/* Loading Screen */
 window.addEventListener("load", () => {
   setTimeout(() => {
-    if (loader) {
-      loader.classList.add("hidden");
-    }
+    if (loader) loader.classList.add("hidden");
   }, 1700);
 });
 
-/* ========================================
-   Sticky Navbar / Scroll Features
-   ======================================== */
-
+/* Sticky Navbar / Scroll */
 function handleScroll() {
-  if (navbar) {
-    navbar.classList.toggle("scrolled", window.scrollY > 70);
-  }
-
-  if (backToTopBtn) {
-    backToTopBtn.classList.toggle("visible", window.scrollY > 500);
-  }
-
+  if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 70);
+  if (backToTopBtn) backToTopBtn.classList.toggle("visible", window.scrollY > 500);
   updateActiveNavigation();
 }
 
@@ -74,10 +51,7 @@ function updateActiveNavigation() {
     const top = section.offsetTop - 145;
     const bottom = top + section.offsetHeight;
     const sectionId = section.getAttribute("id");
-
-    const navLink = document.querySelector(
-      `.nav-link[href="#${sectionId}"]`
-    );
+    const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
 
     if (navLink && currentScroll >= top && currentScroll < bottom) {
       navLinks.forEach((link) => link.classList.remove("active"));
@@ -86,43 +60,29 @@ function updateActiveNavigation() {
   });
 }
 
-/* ========================================
-   Mobile Navigation
-   ======================================== */
-
+/* Mobile Nav */
 if (hamburger && navMenu) {
   hamburger.addEventListener("click", () => {
     const isOpen = navMenu.classList.toggle("active");
-
     hamburger.classList.toggle("active", isOpen);
     hamburger.setAttribute("aria-expanded", String(isOpen));
-
     document.body.classList.toggle("menu-open", isOpen);
   });
 }
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    if (navMenu) {
-      navMenu.classList.remove("active");
-    }
-
+    if (navMenu) navMenu.classList.remove("active");
     if (hamburger) {
       hamburger.classList.remove("active");
       hamburger.setAttribute("aria-expanded", "false");
     }
-
     document.body.classList.remove("menu-open");
   });
 });
 
 document.addEventListener("keydown", (event) => {
-  if (
-    event.key === "Escape" &&
-    navMenu &&
-    hamburger &&
-    navMenu.classList.contains("active")
-  ) {
+  if (event.key === "Escape" && navMenu && hamburger && navMenu.classList.contains("active")) {
     navMenu.classList.remove("active");
     hamburger.classList.remove("active");
     hamburger.setAttribute("aria-expanded", "false");
@@ -130,25 +90,16 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-/* ========================================
-   Smooth Scrolling
-   ======================================== */
-
+/* Smooth Scrolling */
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (event) {
     const targetId = this.getAttribute("href");
-
-    if (!targetId || targetId === "#") {
-      return;
-    }
+    if (!targetId || targetId === "#") return;
 
     const target = document.querySelector(targetId);
-
     if (target) {
       event.preventDefault();
-
       const navbarHeight = navbar ? navbar.offsetHeight : 0;
-
       window.scrollTo({
         top: target.offsetTop - navbarHeight,
         behavior: "smooth",
@@ -157,23 +108,14 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-/* ========================================
-   Back to Top
-   ======================================== */
-
+/* Back to Top */
 if (backToTopBtn) {
   backToTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
 
-/* ========================================
-   Scroll Reveal Animations
-   ======================================== */
-
+/* Scroll Reveal */
 const revealElements = document.querySelectorAll(
   ".about-card, .highlight-item, .course-card, .why-card, .process-step, .registration-form-container, .info-card, .payment-container, .payment-confirmation, .contact-card, .contact-cta"
 );
@@ -189,25 +131,18 @@ if ("IntersectionObserver" in window) {
         }
       });
     },
-    {
-      threshold: 0.1,
-      rootMargin: "0px 0px -60px 0px",
-    }
+    { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
   );
 
   revealElements.forEach((element) => {
     element.style.opacity = "0";
     element.style.transform = "translateY(24px)";
     element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-
     revealObserver.observe(element);
   });
 }
 
-/* ========================================
-   Animated Course Counter
-   ======================================== */
-
+/* Counter */
 function animateCounter(counterElement) {
   const target = Number(counterElement.dataset.target || 0);
   const duration = 1100;
@@ -217,14 +152,10 @@ function animateCounter(counterElement) {
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
     const currentValue = Math.floor(progress * target);
-
     counterElement.textContent = String(currentValue);
 
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      counterElement.textContent = String(target);
-    }
+    if (progress < 1) requestAnimationFrame(update);
+    else counterElement.textContent = String(target);
   }
 
   requestAnimationFrame(update);
@@ -242,21 +173,16 @@ if (heroSection && "IntersectionObserver" in window) {
         }
       });
     },
-    {
-      threshold: 0.35,
-    }
+    { threshold: 0.35 }
   );
 
   heroObserver.observe(heroSection);
 }
 
-/* ========================================
-   Toast Notifications
-   ======================================== */
-
+/* Toast */
 let toastTimer;
 
-function showToast(message, type = "success") {
+function showToast(message, type = "success", customHeading = "") {
   if (!toast || !toastText) {
     alert(message);
     return;
@@ -269,35 +195,22 @@ function showToast(message, type = "success") {
   toastText.textContent = message;
 
   if (type === "error") {
-    if (toastHeading) {
-      toastHeading.textContent = "Unable to submit";
-    }
-
+    if (toastHeading) toastHeading.textContent = customHeading || "Unable to submit";
     if (iconBox) {
       iconBox.style.background = "rgba(239, 68, 68, 0.18)";
       iconBox.style.color = "#f87171";
     }
-
-    if (icon) {
-      icon.className = "fas fa-circle-exclamation";
-    }
+    if (icon) icon.className = "fas fa-circle-exclamation";
   } else {
-    if (toastHeading) {
-      toastHeading.textContent = "Success!";
-    }
-
+    if (toastHeading) toastHeading.textContent = customHeading || "Success!";
     if (iconBox) {
       iconBox.style.background = "rgba(39, 201, 63, 0.16)";
       iconBox.style.color = "#4ade80";
     }
-
-    if (icon) {
-      icon.className = "fas fa-circle-check";
-    }
+    if (icon) icon.className = "fas fa-circle-check";
   }
 
   clearTimeout(toastTimer);
-
   toast.classList.add("show");
 
   toastTimer = setTimeout(() => {
@@ -305,10 +218,7 @@ function showToast(message, type = "success") {
   }, 4500);
 }
 
-/* ========================================
-   Validation Helpers
-   ======================================== */
-
+/* Validation */
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -317,13 +227,9 @@ function isValidPhone(phone) {
   return /^[0-9]{10}$/.test(phone);
 }
 
-/* ========================================
-   Google Sheets Submission
-   ======================================== */
-
+/* Google Sheets */
 async function sendToGoogleSheets(data) {
   const encodedData = new URLSearchParams();
-
   Object.entries(data).forEach(([key, value]) => {
     encodedData.append(key, value ?? "");
   });
@@ -335,24 +241,17 @@ async function sendToGoogleSheets(data) {
   });
 }
 
-/* ========================================
-   Course Enroll Buttons
-   ======================================== */
-
+/* Enroll Buttons */
 courseEnrollButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const selectedCourse = button.dataset.course;
-
     if (registrationCourse && selectedCourse) {
       registrationCourse.value = selectedCourse;
     }
   });
 });
 
-/* ========================================
-   Registration Form
-   ======================================== */
-
+/* Registration Form */
 if (registrationForm) {
   registrationForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -370,31 +269,26 @@ if (registrationForm) {
       document.getElementById("studentName").focus();
       return;
     }
-
     if (!isValidPhone(phone)) {
       showToast("Please enter a valid 10-digit phone number.", "error");
       document.getElementById("phone").focus();
       return;
     }
-
     if (!isValidEmail(email)) {
       showToast("Please enter a valid email address.", "error");
       document.getElementById("email").focus();
       return;
     }
-
     if (!course) {
       showToast("Please select a course.", "error");
       document.getElementById("course").focus();
       return;
     }
-
     if (!mode) {
       showToast("Please select a learning mode.", "error");
       document.getElementById("mode").focus();
       return;
     }
-
     if (!batch) {
       showToast("Please select your preferred batch day & time.", "error");
       document.getElementById("batch").focus();
@@ -417,32 +311,24 @@ if (registrationForm) {
       paymentStatus: "Registration Fee Pending",
     };
 
-    const submitButton = registrationForm.querySelector(
-      'button[type="submit"]'
-    );
-
+    const submitButton = registrationForm.querySelector('button[type="submit"]');
     const originalText = submitButton.innerHTML;
 
     submitButton.disabled = true;
-    submitButton.innerHTML =
-      '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
     try {
       await sendToGoogleSheets(registrationData);
-
       registrationForm.reset();
 
       showToast(
-  "You have been successfully registered! A confirmation email has been sent to your inbox.",
-  "success"
+        `Thank you ${studentName}! You have been successfully registered. A confirmation email has been sent to ${email}.`,
+        "success",
+        "Successfully Registered!"
       );
     } catch (error) {
       console.error("Registration form error:", error);
-
-      showToast(
-        "The registration could not be submitted. Please try again.",
-        "error"
-      );
+      showToast("The registration could not be submitted. Please try again.", "error");
     } finally {
       submitButton.disabled = false;
       submitButton.innerHTML = originalText;
@@ -450,58 +336,37 @@ if (registrationForm) {
   });
 }
 
-/* ========================================
-   Payment Confirmation Form
-   ======================================== */
-
+/* Payment Form */
 if (paymentForm) {
   paymentForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const studentName = document
-      .getElementById("paymentStudentName")
-      .value.trim();
-
-    const phone = document
-      .getElementById("paymentPhone")
-      .value.trim();
-
-    const course = document
-      .getElementById("paymentCourse")
-      .value;
-
-    const paymentAmount = document
-      .getElementById("paymentAmount")
-      .value;
-
-    const utrNumber = document
-      .getElementById("utrNumber")
-      .value.trim();
+    const studentName = document.getElementById("paymentStudentName").value.trim();
+    const phone = document.getElementById("paymentPhone").value.trim();
+    const course = document.getElementById("paymentCourse").value;
+    const paymentAmount = document.getElementById("paymentAmount").value;
+    const utrNumber = document.getElementById("utrNumber").value.trim();
 
     if (!studentName) {
       showToast("Please enter the student name.", "error");
       document.getElementById("paymentStudentName").focus();
       return;
     }
-
     if (!isValidPhone(phone)) {
       showToast("Please enter a valid 10-digit phone number.", "error");
       document.getElementById("paymentPhone").focus();
       return;
     }
-
     if (!course) {
       showToast("Please select the course.", "error");
       document.getElementById("paymentCourse").focus();
       return;
     }
-
     if (!paymentAmount) {
       showToast("Please select the amount paid.", "error");
       document.getElementById("paymentAmount").focus();
       return;
     }
-
     if (!utrNumber) {
       showToast("Please enter the UTR or transaction ID.", "error");
       document.getElementById("utrNumber").focus();
@@ -518,32 +383,24 @@ if (paymentForm) {
       paymentStatus: "Pending Verification",
     };
 
-    const submitButton = paymentForm.querySelector(
-      'button[type="submit"]'
-    );
-
+    const submitButton = paymentForm.querySelector('button[type="submit"]');
     const originalText = submitButton.innerHTML;
 
     submitButton.disabled = true;
-    submitButton.innerHTML =
-      '<i class="fas fa-spinner fa-spin"></i> Sending Payment Details...';
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Payment Details...';
 
     try {
       await sendToGoogleSheets(paymentData);
-
       paymentForm.reset();
 
       showToast(
-        "Payment details submitted. The payment is pending academy verification.",
-        "success"
+        "Payment details submitted successfully. Your payment is pending academy verification.",
+        "success",
+        "Payment Details Submitted!"
       );
     } catch (error) {
       console.error("Payment confirmation error:", error);
-
-      showToast(
-        "Payment details could not be submitted. Please try again.",
-        "error"
-      );
+      showToast("Payment details could not be submitted. Please try again.", "error");
     } finally {
       submitButton.disabled = false;
       submitButton.innerHTML = originalText;
@@ -551,10 +408,7 @@ if (paymentForm) {
   });
 }
 
-/* ========================================
-   Copy UPI ID
-   ======================================== */
-
+/* Copy UPI */
 if (copyUpiBtn && upiIdText) {
   copyUpiBtn.addEventListener("click", async () => {
     const upiId = upiIdText.textContent.trim();
@@ -566,23 +420,15 @@ if (copyUpiBtn && upiIdText) {
 
     try {
       await navigator.clipboard.writeText(upiId);
-
-      copyUpiBtn.innerHTML =
-        '<i class="fas fa-check"></i> Copied';
-
+      copyUpiBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
       showToast("UPI ID copied successfully.", "success");
 
       setTimeout(() => {
-        copyUpiBtn.innerHTML =
-          '<i class="fas fa-copy"></i> Copy';
+        copyUpiBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
       }, 2000);
     } catch (error) {
       console.error("Clipboard error:", error);
-
-      showToast(
-        "Could not copy automatically. Please copy the UPI ID manually.",
-        "error"
-      );
+      showToast("Could not copy automatically. Please copy the UPI ID manually.", "error");
     }
   });
 }
