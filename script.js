@@ -1,6 +1,5 @@
 /* ========================================
-   JJJ SkillForge Academy
-   Main JavaScript
+   JJJ SkillForge Academy — Main JavaScript
    ======================================== */
 
 const API_URL =
@@ -39,9 +38,7 @@ const rainContainer = document.getElementById("rainContainer");
 
 window.addEventListener("load", () => {
   setTimeout(() => {
-    if (loader) {
-      loader.classList.add("hidden");
-    }
+    if (loader) loader.classList.add("hidden");
   }, 1500);
 });
 
@@ -52,9 +49,8 @@ window.addEventListener("load", () => {
 function createParticles() {
   if (!particlesContainer) return;
 
-  // Detect mobile
   const isMobile = window.innerWidth < 700;
-  const particleCount = isMobile ? 0 : 25; // No particles on mobile (performance)
+  const particleCount = isMobile ? 0 : 25;
 
   if (particleCount === 0) return;
 
@@ -69,25 +65,19 @@ function createParticles() {
     const particle = document.createElement("div");
     particle.className = "particle";
 
-    // Random position
     particle.style.left = Math.random() * 100 + "%";
     particle.style.top = (100 + Math.random() * 20) + "%";
 
-    // Random size
     const size = 2 + Math.random() * 4;
     particle.style.width = size + "px";
     particle.style.height = size + "px";
 
-    // Random color
     const color = colors[Math.floor(Math.random() * colors.length)];
     particle.style.background = color;
     particle.style.boxShadow = `0 0 ${size * 3}px ${color}`;
 
-    // Random animation duration
     const duration = 15 + Math.random() * 20;
     particle.style.animationDuration = duration + "s";
-
-    // Random delay
     particle.style.animationDelay = "-" + Math.random() * duration + "s";
 
     particlesContainer.appendChild(particle);
@@ -97,35 +87,55 @@ function createParticles() {
 createParticles();
 
 /* ========================================
-   Rain Falling Effect
+   Rain Falling Effect — Full Page
    ======================================== */
 
 function createRain() {
   if (!rainContainer) return;
 
-  // Detect phone screen
   const isMobile = window.innerWidth < 700;
-  const dropCount = isMobile ? 30 : 90;
+  const dropCount = isMobile ? 45 : 130;
 
   for (let i = 0; i < dropCount; i++) {
     const drop = document.createElement("div");
-    drop.className = "raindrop";
 
-    // Random horizontal position
+    const roll = Math.random();
+    let layerClass = "mid";
+    let heightMin = 50;
+    let heightMax = 110;
+    let speedMin = 0.9;
+    let speedMax = 1.6;
+
+    if (roll < 0.4) {
+      layerClass = "far";
+      heightMin = 30;
+      heightMax = 70;
+      speedMin = 1.5;
+      speedMax = 2.4;
+    } else if (roll < 0.75) {
+      layerClass = "mid";
+      heightMin = 50;
+      heightMax = 110;
+      speedMin = 0.9;
+      speedMax = 1.6;
+    } else {
+      layerClass = "near";
+      heightMin = 80;
+      heightMax = 150;
+      speedMin = 0.5;
+      speedMax = 1.0;
+    }
+
+    drop.className = "raindrop " + layerClass;
+
     drop.style.left = Math.random() * 100 + "%";
 
-    // Random height (40px - 130px)
-    const height = 40 + Math.random() * 90;
+    const height = heightMin + Math.random() * (heightMax - heightMin);
     drop.style.height = height + "px";
 
-    // Random opacity
-    drop.style.opacity = (0.3 + Math.random() * 0.6).toFixed(2);
-
-    // Random speed (0.4s - 1.3s) — faster = closer to viewer
-    const duration = 0.4 + Math.random() * 0.9;
+    const duration = speedMin + Math.random() * (speedMax - speedMin);
     drop.style.animationDuration = duration.toFixed(2) + "s";
 
-    // Random start delay (so they don't all fall together)
     drop.style.animationDelay = "-" + (Math.random() * 3).toFixed(2) + "s";
 
     rainContainer.appendChild(drop);
@@ -139,14 +149,8 @@ createRain();
    ======================================== */
 
 function handleScroll() {
-  if (navbar) {
-    navbar.classList.toggle("scrolled", window.scrollY > 70);
-  }
-
-  if (backToTopBtn) {
-    backToTopBtn.classList.toggle("visible", window.scrollY > 500);
-  }
-
+  if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 70);
+  if (backToTopBtn) backToTopBtn.classList.toggle("visible", window.scrollY > 500);
   updateActiveNavigation();
 }
 
@@ -161,10 +165,7 @@ function updateActiveNavigation() {
     const top = section.offsetTop - 145;
     const bottom = top + section.offsetHeight;
     const sectionId = section.getAttribute("id");
-
-    const navLink = document.querySelector(
-      `.nav-link[href="#${sectionId}"]`
-    );
+    const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
 
     if (navLink && currentScroll >= top && currentScroll < bottom) {
       navLinks.forEach((link) => link.classList.remove("active"));
@@ -180,10 +181,8 @@ function updateActiveNavigation() {
 if (hamburger && navMenu) {
   hamburger.addEventListener("click", () => {
     const isOpen = navMenu.classList.toggle("active");
-
     hamburger.classList.toggle("active", isOpen);
     hamburger.setAttribute("aria-expanded", String(isOpen));
-
     document.body.classList.toggle("menu-open", isOpen);
   });
 }
@@ -200,12 +199,7 @@ navLinks.forEach((link) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (
-    event.key === "Escape" &&
-    navMenu &&
-    hamburger &&
-    navMenu.classList.contains("active")
-  ) {
+  if (event.key === "Escape" && navMenu && hamburger && navMenu.classList.contains("active")) {
     navMenu.classList.remove("active");
     hamburger.classList.remove("active");
     hamburger.setAttribute("aria-expanded", "false");
@@ -220,16 +214,12 @@ document.addEventListener("keydown", (event) => {
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (event) {
     const targetId = this.getAttribute("href");
-
     if (!targetId || targetId === "#") return;
 
     const target = document.querySelector(targetId);
-
     if (target) {
       event.preventDefault();
-
       const navbarHeight = navbar ? navbar.offsetHeight : 0;
-
       window.scrollTo({
         top: target.offsetTop - navbarHeight,
         behavior: "smooth",
@@ -244,10 +234,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
 if (backToTopBtn) {
   backToTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
 
@@ -270,23 +257,19 @@ if ("IntersectionObserver" in window) {
         }
       });
     },
-    {
-      threshold: 0.1,
-      rootMargin: "0px 0px -60px 0px",
-    }
+    { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
   );
 
   revealElements.forEach((element) => {
     element.style.opacity = "0";
     element.style.transform = "translateY(24px)";
     element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-
     revealObserver.observe(element);
   });
 }
 
 /* ========================================
-   Animated Course Counter
+   Animated Counter
    ======================================== */
 
 function animateCounter(counterElement) {
@@ -298,14 +281,10 @@ function animateCounter(counterElement) {
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
     const currentValue = Math.floor(progress * target);
-
     counterElement.textContent = String(currentValue);
 
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      counterElement.textContent = String(target);
-    }
+    if (progress < 1) requestAnimationFrame(update);
+    else counterElement.textContent = String(target);
   }
 
   requestAnimationFrame(update);
@@ -323,9 +302,7 @@ if (heroSection && "IntersectionObserver" in window) {
         }
       });
     },
-    {
-      threshold: 0.35,
-    }
+    { threshold: 0.35 }
   );
 
   heroObserver.observe(heroSection);
@@ -350,35 +327,22 @@ function showToast(message, type = "success", customHeading = "") {
   toastText.textContent = message;
 
   if (type === "error") {
-    if (toastHeading) {
-      toastHeading.textContent = customHeading || "Unable to submit";
-    }
-
+    if (toastHeading) toastHeading.textContent = customHeading || "Unable to submit";
     if (iconBox) {
       iconBox.style.background = "rgba(239, 68, 68, 0.18)";
       iconBox.style.color = "#f87171";
     }
-
-    if (icon) {
-      icon.className = "fas fa-circle-exclamation";
-    }
+    if (icon) icon.className = "fas fa-circle-exclamation";
   } else {
-    if (toastHeading) {
-      toastHeading.textContent = customHeading || "Success!";
-    }
-
+    if (toastHeading) toastHeading.textContent = customHeading || "Success!";
     if (iconBox) {
       iconBox.style.background = "rgba(39, 201, 63, 0.16)";
       iconBox.style.color = "#4ade80";
     }
-
-    if (icon) {
-      icon.className = "fas fa-circle-check";
-    }
+    if (icon) icon.className = "fas fa-circle-check";
   }
 
   clearTimeout(toastTimer);
-
   toast.classList.add("show");
 
   toastTimer = setTimeout(() => {
@@ -404,7 +368,6 @@ function isValidPhone(phone) {
 
 async function sendToGoogleSheets(data) {
   const encodedData = new URLSearchParams();
-
   Object.entries(data).forEach(([key, value]) => {
     encodedData.append(key, value ?? "");
   });
@@ -423,7 +386,6 @@ async function sendToGoogleSheets(data) {
 courseEnrollButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const selectedCourse = button.dataset.course;
-
     if (registrationCourse && selectedCourse) {
       registrationCourse.value = selectedCourse;
     }
@@ -498,19 +460,14 @@ if (registrationForm) {
       paymentStatus: "Registration Fee Pending",
     };
 
-    const submitButton = registrationForm.querySelector(
-      'button[type="submit"]'
-    );
-
+    const submitButton = registrationForm.querySelector('button[type="submit"]');
     const originalText = submitButton.innerHTML;
 
     submitButton.disabled = true;
-    submitButton.innerHTML =
-      '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
     try {
       await sendToGoogleSheets(registrationData);
-
       registrationForm.reset();
 
       showToast(
@@ -520,11 +477,7 @@ if (registrationForm) {
       );
     } catch (error) {
       console.error("Registration form error:", error);
-
-      showToast(
-        "The registration could not be submitted. Please try again.",
-        "error"
-      );
+      showToast("The registration could not be submitted. Please try again.", "error");
     } finally {
       submitButton.disabled = false;
       submitButton.innerHTML = originalText;
@@ -540,25 +493,11 @@ if (paymentForm) {
   paymentForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const studentName = document
-      .getElementById("paymentStudentName")
-      .value.trim();
-
-    const phone = document
-      .getElementById("paymentPhone")
-      .value.trim();
-
-    const course = document
-      .getElementById("paymentCourse")
-      .value;
-
-    const paymentAmount = document
-      .getElementById("paymentAmount")
-      .value;
-
-    const utrNumber = document
-      .getElementById("utrNumber")
-      .value.trim();
+    const studentName = document.getElementById("paymentStudentName").value.trim();
+    const phone = document.getElementById("paymentPhone").value.trim();
+    const course = document.getElementById("paymentCourse").value;
+    const paymentAmount = document.getElementById("paymentAmount").value;
+    const utrNumber = document.getElementById("utrNumber").value.trim();
 
     if (!studentName) {
       showToast("Please enter the student name.", "error");
@@ -600,19 +539,14 @@ if (paymentForm) {
       paymentStatus: "Pending Verification",
     };
 
-    const submitButton = paymentForm.querySelector(
-      'button[type="submit"]'
-    );
-
+    const submitButton = paymentForm.querySelector('button[type="submit"]');
     const originalText = submitButton.innerHTML;
 
     submitButton.disabled = true;
-    submitButton.innerHTML =
-      '<i class="fas fa-spinner fa-spin"></i> Sending Payment Details...';
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Payment Details...';
 
     try {
       await sendToGoogleSheets(paymentData);
-
       paymentForm.reset();
 
       showToast(
@@ -622,11 +556,7 @@ if (paymentForm) {
       );
     } catch (error) {
       console.error("Payment confirmation error:", error);
-
-      showToast(
-        "Payment details could not be submitted. Please try again.",
-        "error"
-      );
+      showToast("Payment details could not be submitted. Please try again.", "error");
     } finally {
       submitButton.disabled = false;
       submitButton.innerHTML = originalText;
@@ -649,23 +579,15 @@ if (copyUpiBtn && upiIdText) {
 
     try {
       await navigator.clipboard.writeText(upiId);
-
-      copyUpiBtn.innerHTML =
-        '<i class="fas fa-check"></i> Copied';
-
+      copyUpiBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
       showToast("UPI ID copied successfully.", "success");
 
       setTimeout(() => {
-        copyUpiBtn.innerHTML =
-          '<i class="fas fa-copy"></i> Copy';
+        copyUpiBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
       }, 2000);
     } catch (error) {
       console.error("Clipboard error:", error);
-
-      showToast(
-        "Could not copy automatically. Please copy the UPI ID manually.",
-        "error"
-      );
+      showToast("Could not copy automatically. Please copy the UPI ID manually.", "error");
     }
   });
 }
