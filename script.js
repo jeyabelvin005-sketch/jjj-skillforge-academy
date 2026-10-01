@@ -30,6 +30,8 @@ const registrationCourse = document.getElementById("course");
 const copyUpiBtn = document.getElementById("copyUpiBtn");
 const upiIdText = document.getElementById("upiIdText");
 
+const particlesContainer = document.getElementById("particles");
+
 /* ========================================
    Loading Screen
    ======================================== */
@@ -39,8 +41,59 @@ window.addEventListener("load", () => {
     if (loader) {
       loader.classList.add("hidden");
     }
-  }, 1700);
+  }, 1500);
 });
+
+/* ========================================
+   Background Particles
+   ======================================== */
+
+function createParticles() {
+  if (!particlesContainer) return;
+
+  // Detect mobile
+  const isMobile = window.innerWidth < 700;
+  const particleCount = isMobile ? 0 : 25; // No particles on mobile (performance)
+
+  if (particleCount === 0) return;
+
+  const colors = [
+    "rgba(129, 140, 248, 0.6)",
+    "rgba(6, 182, 212, 0.6)",
+    "rgba(167, 139, 250, 0.6)",
+    "rgba(34, 211, 238, 0.5)"
+  ];
+
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+
+    // Random position
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = (100 + Math.random() * 20) + "%";
+
+    // Random size
+    const size = 2 + Math.random() * 4;
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+
+    // Random color
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.background = color;
+    particle.style.boxShadow = `0 0 ${size * 3}px ${color}`;
+
+    // Random animation duration
+    const duration = 15 + Math.random() * 20;
+    particle.style.animationDuration = duration + "s";
+
+    // Random delay
+    particle.style.animationDelay = "-" + Math.random() * duration + "s";
+
+    particlesContainer.appendChild(particle);
+  }
+}
+
+createParticles();
 
 /* ========================================
    Sticky Navbar / Scroll Features
@@ -98,15 +151,11 @@ if (hamburger && navMenu) {
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    if (navMenu) {
-      navMenu.classList.remove("active");
-    }
-
+    if (navMenu) navMenu.classList.remove("active");
     if (hamburger) {
       hamburger.classList.remove("active");
       hamburger.setAttribute("aria-expanded", "false");
     }
-
     document.body.classList.remove("menu-open");
   });
 });
@@ -133,9 +182,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (event) {
     const targetId = this.getAttribute("href");
 
-    if (!targetId || targetId === "#") {
-      return;
-    }
+    if (!targetId || targetId === "#") return;
 
     const target = document.querySelector(targetId);
 
@@ -170,7 +217,7 @@ if (backToTopBtn) {
    ======================================== */
 
 const revealElements = document.querySelectorAll(
-  ".about-card, .highlight-item, .course-card, .why-card, .process-step, .registration-form-container, .info-card, .payment-container, .payment-confirmation, .contact-card, .contact-cta, .location-info, .location-map"
+  ".about-card, .highlight-item, .course-card, .why-card, .process-step, .registration-form-container, .info-card, .payment-container, .payment-confirmation, .contact-card, .contact-cta, .location-info, .location-map, .gallery-item"
 );
 
 if ("IntersectionObserver" in window) {
