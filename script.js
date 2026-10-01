@@ -43,7 +43,7 @@ window.addEventListener("load", () => {
 });
 
 /* ========================================
-   Background Particles
+   Background Particles (Hero only)
    ======================================== */
 
 function createParticles() {
@@ -127,7 +127,6 @@ function createRain() {
     }
 
     drop.className = "raindrop " + layerClass;
-
     drop.style.left = Math.random() * 100 + "%";
 
     const height = heightMin + Math.random() * (heightMax - heightMin);
@@ -269,7 +268,7 @@ if ("IntersectionObserver" in window) {
 }
 
 /* ========================================
-   Animated Counter
+   Animated Course Counter
    ======================================== */
 
 function animateCounter(counterElement) {
