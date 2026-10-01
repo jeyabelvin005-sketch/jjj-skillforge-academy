@@ -31,6 +31,7 @@ const copyUpiBtn = document.getElementById("copyUpiBtn");
 const upiIdText = document.getElementById("upiIdText");
 
 const particlesContainer = document.getElementById("particles");
+const rainContainer = document.getElementById("rainContainer");
 
 /* ========================================
    Loading Screen
@@ -94,6 +95,44 @@ function createParticles() {
 }
 
 createParticles();
+
+/* ========================================
+   Rain Falling Effect
+   ======================================== */
+
+function createRain() {
+  if (!rainContainer) return;
+
+  // Detect phone screen
+  const isMobile = window.innerWidth < 700;
+  const dropCount = isMobile ? 30 : 90;
+
+  for (let i = 0; i < dropCount; i++) {
+    const drop = document.createElement("div");
+    drop.className = "raindrop";
+
+    // Random horizontal position
+    drop.style.left = Math.random() * 100 + "%";
+
+    // Random height (40px - 130px)
+    const height = 40 + Math.random() * 90;
+    drop.style.height = height + "px";
+
+    // Random opacity
+    drop.style.opacity = (0.3 + Math.random() * 0.6).toFixed(2);
+
+    // Random speed (0.4s - 1.3s) — faster = closer to viewer
+    const duration = 0.4 + Math.random() * 0.9;
+    drop.style.animationDuration = duration.toFixed(2) + "s";
+
+    // Random start delay (so they don't all fall together)
+    drop.style.animationDelay = "-" + (Math.random() * 3).toFixed(2) + "s";
+
+    rainContainer.appendChild(drop);
+  }
+}
+
+createRain();
 
 /* ========================================
    Sticky Navbar / Scroll Features
