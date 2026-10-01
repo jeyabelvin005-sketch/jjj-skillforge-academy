@@ -29,8 +29,7 @@ const registrationCourse = document.getElementById("course");
 const copyUpiBtn = document.getElementById("copyUpiBtn");
 const upiIdText = document.getElementById("upiIdText");
 
-const particlesContainer = document.getElementById("particles");
-const rainContainer = document.getElementById("rainContainer");
+const particleCanvas = document.getElementById("particleCanvas");
 
 /* ========================================
    Loading Screen
@@ -43,105 +42,164 @@ window.addEventListener("load", () => {
 });
 
 /* ========================================
-   Background Particles (Hero only)
+   Particle Network Background
+   (Full page - works on laptop & mobile)
    ======================================== */
 
-function createParticles() {
-  if (!particlesContainer) return;
+function initParticleNetwork() {
+  if (!particleCanvas) return;
+
+  const ctx = particleCanvas.getContext("2d");
+  if (!ctx) return;
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (prefersReducedMotion) return;
+
+  let width = 0;
+  let height = 0;
+  let particles = [];
+  let animationId = null;
 
   const isMobile = window.innerWidth < 700;
-  const particleCount = isMobile ? 0 : 25;
+  const PARTICLE_COUNT = isMobile ? 30 : 70;
+  const MAX_DISTANCE = isMobile ? 110 : 140;
+  const MOUSE_DISTANCE = 160;
+  const BASE_SPEED = 0.25;
 
-  if (particleCount === 0) return;
+  const mouse = { x: -1000, y: -1000 };
 
-  const colors = [
-    "rgba(129, 140, 248, 0.6)",
-    "rgba(6, 182, 212, 0.6)",
-    "rgba(167, 139, 250, 0.6)",
-    "rgba(34, 211, 238, 0.5)"
-  ];
-
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement("div");
-    particle.className = "particle";
-
-    particle.style.left = Math.random() * 100 + "%";
-    particle.style.top = (100 + Math.random() * 20) + "%";
-
-    const size = 2 + Math.random() * 4;
-    particle.style.width = size + "px";
-    particle.style.height = size + "px";
-
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    particle.style.background = color;
-    particle.style.boxShadow = `0 0 ${size * 3}px ${color}`;
-
-    const duration = 15 + Math.random() * 20;
-    particle.style.animationDuration = duration + "s";
-    particle.style.animationDelay = "-" + Math.random() * duration + "s";
-
-    particlesContainer.appendChild(particle);
+  function resize() {
+    width = particleCanvas.width = window.innerWidth;
+    height = particleCanvas.height = window.innerHeight;
   }
-}
 
-createParticles();
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * BASE_SPEED * 2,
+        vy: (Math.random() - 0.5) * BASE_SPEED * 2,
+        radius: 1 + Math.random() * 1.5,
+        hue: Math.random() < 0.5 ? "165, 180, 252" : "6, 182, 212"
+      });
+    }
+  }
 
-/* ========================================
-   Rain Falling Effect — Full Page
-   ======================================== */
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
 
-function createRain() {
-  if (!rainContainer) return;
+    // Update + draw each particle
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
 
-  const isMobile = window.innerWidth < 700;
-  const dropCount = isMobile ? 45 : 130;
+      p.x += p.vx;
+      p.y += p.vy;
 
-  for (let i = 0; i < dropCount; i++) {
-    const drop = document.createElement("div");
+      // Bounce off edges
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
 
-    const roll = Math.random();
-    let layerClass = "mid";
-    let heightMin = 50;
-    let heightMax = 110;
-    let speedMin = 0.9;
-    let speedMax = 1.6;
+      // Keep inside
+      if (p.x < 0) p.x = 0;
+      if (p.x > width) p.x = width;
+      if (p.y < 0) p.y = 0;
+      if (p.y > height) p.y = height;
 
-    if (roll < 0.4) {
-      layerClass = "far";
-      heightMin = 30;
-      heightMax = 70;
-      speedMin = 1.5;
-      speedMax = 2.4;
-    } else if (roll < 0.75) {
-      layerClass = "mid";
-      heightMin = 50;
-      heightMax = 110;
-      speedMin = 0.9;
-      speedMax = 1.6;
-    } else {
-      layerClass = "near";
-      heightMin = 80;
-      heightMax = 150;
-      speedMin = 0.5;
-      speedMax = 1.0;
+      // Draw dot
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${p.hue}, 0.85)`;
+      ctx.fill();
+
+      // Draw lines to nearby particles
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const dx = p.x - p2.x;
+        const dy = p.y - p2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < MAX_DISTANCE) {
+          const opacity = (1 - dist / MAX_DISTANCE) * 0.35;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(129, 140, 248, ${opacity})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+
+      // Connect to mouse (laptop only)
+      if (!isMobile) {
+        const dxm = p.x - mouse.x;
+        const dym = p.y - mouse.y;
+        const distM = Math.sqrt(dxm * dxm + dym * dym);
+
+        if (distM < MOUSE_DISTANCE) {
+          const opacity = (1 - distM / MOUSE_DISTANCE) * 0.55;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(196, 181, 253, ${opacity})`;
+          ctx.lineWidth = 0.9;
+          ctx.stroke();
+        }
+      }
     }
 
-    drop.className = "raindrop " + layerClass;
-    drop.style.left = Math.random() * 100 + "%";
-
-    const height = heightMin + Math.random() * (heightMax - heightMin);
-    drop.style.height = height + "px";
-
-    const duration = speedMin + Math.random() * (speedMax - speedMin);
-    drop.style.animationDuration = duration.toFixed(2) + "s";
-
-    drop.style.animationDelay = "-" + (Math.random() * 3).toFixed(2) + "s";
-
-    rainContainer.appendChild(drop);
+    animationId = requestAnimationFrame(draw);
   }
+
+  // Mouse movement (laptop only)
+  if (!isMobile) {
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener("mouseleave", () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
+  }
+
+  // Resize handler
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      resize();
+      createParticles();
+    }, 250);
+  });
+
+  // Pause animation when tab is hidden (battery save)
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    } else {
+      if (!animationId) {
+        animationId = requestAnimationFrame(draw);
+      }
+    }
+  });
+
+  // Initialize
+  resize();
+  createParticles();
+  animationId = requestAnimationFrame(draw);
 }
 
-createRain();
+initParticleNetwork();
 
 /* ========================================
    Sticky Navbar / Scroll Features
@@ -153,7 +211,7 @@ function handleScroll() {
   updateActiveNavigation();
 }
 
-window.addEventListener("scroll", handleScroll);
+window.addEventListener("scroll", handleScroll, { passive: true });
 handleScroll();
 
 function updateActiveNavigation() {
