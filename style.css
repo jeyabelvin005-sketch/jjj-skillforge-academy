@@ -2321,3 +2321,61 @@ textarea {
     animation: none;
   }
 }
+/* ========================================
+   Rain Falling Effect
+   ======================================== */
+
+.rain-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.raindrop {
+  position: absolute;
+  top: -15%;
+  width: 1.5px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(165, 180, 252, 0.85),
+    rgba(6, 182, 212, 0.6),
+    transparent
+  );
+  border-radius: 2px;
+  animation: rainFall linear infinite;
+  will-change: transform;
+  pointer-events: none;
+}
+
+@keyframes rainFall {
+  0% {
+    transform: translateY(-15vh);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(115vh);
+    opacity: 0;
+  }
+}
+
+/* Rain performance on mobile */
+@media (max-width: 700px) {
+  .raindrop {
+    width: 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rain-container {
+    display: none;
+  }
+}
