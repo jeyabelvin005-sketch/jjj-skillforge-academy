@@ -5,10 +5,6 @@
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxG-rbeR0rBqOwBT6Wi3MELYkaLZHreqZZX8aYonx_kGbZ0t-ucPGVSVDGoAZfwOMc6/exec";
 
-/* ========================================
-   DOM Elements
-   ======================================== */
-
 const navbar = document.getElementById("navbar");
 const navMenu = document.getElementById("nav-menu");
 const hamburger = document.getElementById("hamburger");
@@ -31,28 +27,20 @@ const upiIdText = document.getElementById("upiIdText");
 
 const particleCanvas = document.getElementById("particleCanvas");
 
-/* ========================================
-   Loading Screen
-   ======================================== */
-
+/* Loading Screen */
 window.addEventListener("load", () => {
   setTimeout(() => {
     if (loader) loader.classList.add("hidden");
   }, 1500);
 });
 
-/* ========================================
-   Particle Network Background
-   (Full page - works on laptop & mobile)
-   ======================================== */
-
+/* Particle Network Background */
 function initParticleNetwork() {
   if (!particleCanvas) return;
 
   const ctx = particleCanvas.getContext("2d");
   if (!ctx) return;
 
-  // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
@@ -94,30 +82,25 @@ function initParticleNetwork() {
   function draw() {
     ctx.clearRect(0, 0, width, height);
 
-    // Update + draw each particle
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
 
       p.x += p.vx;
       p.y += p.vy;
 
-      // Bounce off edges
       if (p.x < 0 || p.x > width) p.vx *= -1;
       if (p.y < 0 || p.y > height) p.vy *= -1;
 
-      // Keep inside
       if (p.x < 0) p.x = 0;
       if (p.x > width) p.x = width;
       if (p.y < 0) p.y = 0;
       if (p.y > height) p.y = height;
 
-      // Draw dot
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${p.hue}, 0.85)`;
       ctx.fill();
 
-      // Draw lines to nearby particles
       for (let j = i + 1; j < particles.length; j++) {
         const p2 = particles[j];
         const dx = p.x - p2.x;
@@ -135,7 +118,6 @@ function initParticleNetwork() {
         }
       }
 
-      // Connect to mouse (laptop only)
       if (!isMobile) {
         const dxm = p.x - mouse.x;
         const dym = p.y - mouse.y;
@@ -156,7 +138,6 @@ function initParticleNetwork() {
     animationId = requestAnimationFrame(draw);
   }
 
-  // Mouse movement (laptop only)
   if (!isMobile) {
     window.addEventListener("mousemove", (e) => {
       mouse.x = e.clientX;
@@ -169,7 +150,6 @@ function initParticleNetwork() {
     });
   }
 
-  // Resize handler
   let resizeTimer;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
@@ -179,7 +159,6 @@ function initParticleNetwork() {
     }, 250);
   });
 
-  // Pause animation when tab is hidden (battery save)
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       if (animationId) {
@@ -193,7 +172,6 @@ function initParticleNetwork() {
     }
   });
 
-  // Initialize
   resize();
   createParticles();
   animationId = requestAnimationFrame(draw);
@@ -201,10 +179,7 @@ function initParticleNetwork() {
 
 initParticleNetwork();
 
-/* ========================================
-   Sticky Navbar / Scroll Features
-   ======================================== */
-
+/* Sticky Navbar / Scroll Features */
 function handleScroll() {
   if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 70);
   if (backToTopBtn) backToTopBtn.classList.toggle("visible", window.scrollY > 500);
@@ -231,10 +206,7 @@ function updateActiveNavigation() {
   });
 }
 
-/* ========================================
-   Mobile Navigation
-   ======================================== */
-
+/* Mobile Navigation */
 if (hamburger && navMenu) {
   hamburger.addEventListener("click", () => {
     const isOpen = navMenu.classList.toggle("active");
@@ -264,10 +236,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-/* ========================================
-   Smooth Scrolling
-   ======================================== */
-
+/* Smooth Scrolling */
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (event) {
     const targetId = this.getAttribute("href");
@@ -285,22 +254,16 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-/* ========================================
-   Back to Top
-   ======================================== */
-
+/* Back to Top */
 if (backToTopBtn) {
   backToTopBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
 
-/* ========================================
-   Scroll Reveal Animations
-   ======================================== */
-
+/* Scroll Reveal */
 const revealElements = document.querySelectorAll(
-  ".about-card, .highlight-item, .course-card, .why-card, .process-step, .registration-form-container, .info-card, .payment-container, .payment-confirmation, .contact-card, .contact-cta, .location-info, .location-map, .gallery-item"
+  ".about-card, .highlight-item, .course-card, .why-card, .process-step, .registration-form-container, .info-card, .payment-container, .payment-confirmation, .contact-card, .contact-cta, .location-info, .location-map"
 );
 
 if ("IntersectionObserver" in window) {
@@ -325,10 +288,7 @@ if ("IntersectionObserver" in window) {
   });
 }
 
-/* ========================================
-   Animated Course Counter
-   ======================================== */
-
+/* Animated Counter */
 function animateCounter(counterElement) {
   const target = Number(counterElement.dataset.target || 0);
   const duration = 1100;
@@ -365,10 +325,7 @@ if (heroSection && "IntersectionObserver" in window) {
   heroObserver.observe(heroSection);
 }
 
-/* ========================================
-   Toast Notifications
-   ======================================== */
-
+/* Toast Notifications */
 let toastTimer;
 
 function showToast(message, type = "success", customHeading = "") {
@@ -407,10 +364,7 @@ function showToast(message, type = "success", customHeading = "") {
   }, 4500);
 }
 
-/* ========================================
-   Validation Helpers
-   ======================================== */
-
+/* Validation Helpers */
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -419,10 +373,7 @@ function isValidPhone(phone) {
   return /^[0-9]{10}$/.test(phone);
 }
 
-/* ========================================
-   Google Sheets Submission
-   ======================================== */
-
+/* Google Sheets Submission */
 async function sendToGoogleSheets(data) {
   const encodedData = new URLSearchParams();
   Object.entries(data).forEach(([key, value]) => {
@@ -436,10 +387,7 @@ async function sendToGoogleSheets(data) {
   });
 }
 
-/* ========================================
-   Course Enroll Buttons
-   ======================================== */
-
+/* Course Enroll Buttons */
 courseEnrollButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const selectedCourse = button.dataset.course;
@@ -449,10 +397,7 @@ courseEnrollButtons.forEach((button) => {
   });
 });
 
-/* ========================================
-   Registration Form
-   ======================================== */
-
+/* Registration Form */
 if (registrationForm) {
   registrationForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -542,10 +487,7 @@ if (registrationForm) {
   });
 }
 
-/* ========================================
-   Payment Confirmation Form
-   ======================================== */
-
+/* Payment Confirmation Form */
 if (paymentForm) {
   paymentForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -621,10 +563,7 @@ if (paymentForm) {
   });
 }
 
-/* ========================================
-   Copy UPI ID
-   ======================================== */
-
+/* Copy UPI ID */
 if (copyUpiBtn && upiIdText) {
   copyUpiBtn.addEventListener("click", async () => {
     const upiId = upiIdText.textContent.trim();
@@ -649,4 +588,225 @@ if (copyUpiBtn && upiIdText) {
   });
 }
 
+/* ========================================
+   3D Rotating Globe Gallery
+   ======================================== */
+
+const globe = document.getElementById("globe");
+const globeStage = document.getElementById("globeStage");
+const globeItems = document.querySelectorAll(".globe-item");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxClose = document.getElementById("lightboxClose");
+const lightboxPrev = document.getElementById("lightboxPrev");
+const lightboxNext = document.getElementById("lightboxNext");
+
+let currentIndex = 0;
+let visibleGlobeItems = [];
+
+function arrangeGlobeItems() {
+  if (!globe || globeItems.length === 0) return;
+
+  const total = globeItems.length;
+  const radius = window.innerWidth < 700 ? 200 : 320;
+  const phi = Math.PI * (3 - Math.sqrt(5));
+
+  globeItems.forEach((item, i) => {
+    const y = 1 - (i / (total - 1)) * 2;
+    const radiusAtY = Math.sqrt(1 - y * y);
+    const theta = phi * i;
+
+    const x = Math.cos(theta) * radiusAtY;
+    const z = Math.sin(theta) * radiusAtY;
+
+    const px = x * radius;
+    const py = y * radius * 0.9;
+    const pz = z * radius;
+
+    const rotY = Math.atan2(x, z) * (180 / Math.PI);
+    const rotX = -Math.asin(y) * (180 / Math.PI);
+
+    item.style.transform = `translate3d(${px}px, ${py}px, ${pz}px) rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+    item.dataset.z = String(Math.round(pz));
+  });
+}
+
+arrangeGlobeItems();
+
+let rotationY = 0;
+let autoRotateSpeed = 0.18;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let dragStartRotY = 0;
+let dragStartRotX = 0;
+let rotationX = 0;
+let lastInteraction = Date.now();
+
+function renderGlobe() {
+  if (globe) {
+    globe.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+  }
+}
+
+function autoRotate() {
+  const idleTime = Date.now() - lastInteraction;
+  if (!isDragging && idleTime > 2000) {
+    rotationY += autoRotateSpeed;
+    renderGlobe();
+  }
+  requestAnimationFrame(autoRotate);
+}
+
+autoRotate();
+
+function onDragStart(clientX, clientY) {
+  isDragging = true;
+  startX = clientX;
+  startY = clientY;
+  dragStartRotY = rotationY;
+  dragStartRotX = rotationX;
+  lastInteraction = Date.now();
+}
+
+function onDragMove(clientX, clientY) {
+  if (!isDragging) return;
+  const deltaX = clientX - startX;
+  const deltaY = clientY - startY;
+  rotationY = dragStartRotY + deltaX * 0.4;
+  rotationX = dragStartRotX - deltaY * 0.3;
+  rotationX = Math.max(-40, Math.min(40, rotationX));
+  renderGlobe();
+  lastInteraction = Date.now();
+}
+
+function onDragEnd() {
+  isDragging = false;
+  lastInteraction = Date.now();
+}
+
+if (globeStage) {
+  globeStage.addEventListener("mousedown", (e) => {
+    onDragStart(e.clientX, e.clientY);
+    e.preventDefault();
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (isDragging) onDragMove(e.clientX, e.clientY);
+  });
+
+  window.addEventListener("mouseup", onDragEnd);
+
+  globeStage.addEventListener(
+    "touchstart",
+    (e) => {
+      const t = e.touches[0];
+      onDragStart(t.clientX, t.clientY);
+    },
+    { passive: true }
+  );
+
+  globeStage.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!isDragging) return;
+      const t = e.touches[0];
+      onDragMove(t.clientX, t.clientY);
+    },
+    { passive: true }
+  );
+
+  globeStage.addEventListener("touchend", onDragEnd);
+  globeStage.addEventListener("touchcancel", onDragEnd);
+}
+
+function updateVisibleItems() {
+  visibleGlobeItems = Array.from(globeItems);
+}
+
+globeItems.forEach((item, index) => {
+  item.addEventListener("click", () => {
+    if (item.classList.contains("placeholder-mode")) return;
+    updateVisibleItems();
+    openLightbox(index);
+  });
+});
+
+function openLightbox(index) {
+  if (!lightbox || !lightboxImg) return;
+
+  currentIndex = index;
+  const item = visibleGlobeItems[currentIndex];
+  const img = item.querySelector("img");
+  if (!img || item.classList.contains("placeholder-mode")) return;
+
+  lightboxImg.src = img.src;
+  lightboxImg.alt = img.alt || "Gallery image";
+  lightbox.classList.add("show");
+  document.body.style.overflow = "hidden";
+
+  lastInteraction = Date.now();
+}
+
+function closeLightbox() {
+  if (!lightbox) return;
+  lightbox.classList.remove("show");
+  document.body.style.overflow = "";
+  lastInteraction = Date.now();
+}
+
+function showNextImage() {
+  let tries = 0;
+  do {
+    currentIndex = (currentIndex + 1) % visibleGlobeItems.length;
+    tries++;
+  } while (visibleGlobeItems[currentIndex].classList.contains("placeholder-mode") && tries < visibleGlobeItems.length);
+
+  const item = visibleGlobeItems[currentIndex];
+  const img = item.querySelector("img");
+  if (img && !item.classList.contains("placeholder-mode")) {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt || "Gallery image";
+  }
+}
+
+function showPrevImage() {
+  let tries = 0;
+  do {
+    currentIndex = (currentIndex - 1 + visibleGlobeItems.length) % visibleGlobeItems.length;
+    tries++;
+  } while (visibleGlobeItems[currentIndex].classList.contains("placeholder-mode") && tries < visibleGlobeItems.length);
+
+  const item = visibleGlobeItems[currentIndex];
+  const img = item.querySelector("img");
+  if (img && !item.classList.contains("placeholder-mode")) {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt || "Gallery image";
+  }
+}
+
+if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+if (lightboxNext) lightboxNext.addEventListener("click", showNextImage);
+if (lightboxPrev) lightboxPrev.addEventListener("click", showPrevImage);
+
+if (lightbox) {
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if (!lightbox || !lightbox.classList.contains("show")) return;
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowRight") showNextImage();
+  if (e.key === "ArrowLeft") showPrevImage();
+});
+
+let globeResizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(globeResizeTimer);
+  globeResizeTimer = setTimeout(arrangeGlobeItems, 250);
+});
+
 console.log("JJJ SkillForge Academy website initialized successfully.");
+console.log("3D Globe Gallery ready with .jpeg images.");
