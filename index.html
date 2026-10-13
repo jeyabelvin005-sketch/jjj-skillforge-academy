@@ -14,10 +14,8 @@
 </head>
 
 <body>
-  <!-- Full-Page Particle Network Canvas -->
   <canvas class="particle-canvas" id="particleCanvas" aria-hidden="true"></canvas>
 
-  <!-- Loading Screen -->
   <div class="loader" id="loader">
     <div class="loader-content">
       <div class="loader-logo-wrap">
@@ -34,7 +32,6 @@
     </div>
   </div>
 
-  <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#home" class="nav-logo" aria-label="JJJ SkillForge Academy Home">
@@ -438,6 +435,21 @@
               </div>
               <div class="form-row">
                 <div class="form-group">
+                  <label for="batch"><i class="fas fa-calendar"></i> Preferred Batch (Saturday / Sunday Only) *</label>
+                  <select id="batch" name="batch" required>
+                    <option value="">Select your class day &amp; time...</option>
+                    <option value="Saturday - 12:00 PM to 2:00 PM">Saturday — 12:00 PM to 2:00 PM</option>
+                    <option value="Saturday - 5:00 PM to 7:00 PM (School Students)">Saturday — 5:00 PM to 7:00 PM (School Students)</option>
+                    <option value="Sunday - 12:00 PM to 2:00 PM">Sunday — 12:00 PM to 2:00 PM</option>
+                  </select>
+                  <p class="batch-note">
+                    <i class="fas fa-circle-info"></i>
+                    <span>Classes are conducted only on <strong>Saturday</strong> and <strong>Sunday</strong>. If you can't attend the Saturday 12 PM – 2 PM slot due to school, choose the <strong>Saturday 5 PM – 7 PM</strong> batch.</span>
+                  </p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
                   <label for="message"><i class="fas fa-comment"></i> Message (Optional)</label>
                   <textarea id="message" name="message" rows="4" placeholder="Any questions or special requirements?"></textarea>
                 </div>
@@ -576,33 +588,92 @@
         <div class="section-header">
           <span class="section-badge">Our Gallery</span>
           <h2 class="section-title">Life at <span class="gradient-text">JJJ Academy</span></h2>
-          <p class="section-subtitle">A peek into our classroom, students, and learning moments.</p>
+          <p class="section-subtitle">Drag to rotate • Click any image to view</p>
         </div>
-        <div class="gallery-grid">
-          <div class="gallery-item glass-card">
-            <div class="gallery-placeholder"><i class="fas fa-chalkboard-user"></i><p>Classroom</p></div>
-            <img src="images/gallery-1.jpg" alt="Classroom" onerror="this.style.display='none'">
+
+        <div class="globe-wrapper">
+          <div class="globe-stage" id="globeStage">
+            <div class="globe" id="globe">
+
+              <div class="globe-item" data-src="images/certificate-1.jpg">
+                <img src="images/certificate-1.jpg" alt="Certificate 1" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-medal"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/certificate-2.jpg">
+                <img src="images/certificate-2.jpg" alt="Certificate 2" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-medal"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/certificate-3.jpg">
+                <img src="images/certificate-3.jpg" alt="Certificate 3" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-medal"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/certificate-4.jpg">
+                <img src="images/certificate-4.jpg" alt="Certificate 4" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-medal"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/certificate-5.jpg">
+                <img src="images/certificate-5.jpg" alt="Certificate 5" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-medal"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/certificate-6.jpg">
+                <img src="images/certificate-6.jpg" alt="Certificate 6" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-medal"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/certificate-7.jpg">
+                <img src="images/certificate-7.jpg" alt="Certificate 7" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-medal"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/certificate-8.jpg">
+                <img src="images/certificate-8.jpg" alt="Certificate 8" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-medal"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/certificate-9.jpg">
+                <img src="images/certificate-9.jpg" alt="Certificate 9" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-medal"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/certificate-10.jpg">
+                <img src="images/certificate-10.jpg" alt="Certificate 10" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-medal"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/classroom-1.jpg">
+                <img src="images/classroom-1.jpg" alt="Classroom 1" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-chalkboard-user"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/classroom-2.jpg">
+                <img src="images/classroom-2.jpg" alt="Classroom 2" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-laptop-code"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/classroom-3.jpg">
+                <img src="images/classroom-3.jpg" alt="Classroom 3" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-code"></i></div>
+              </div>
+
+              <div class="globe-item" data-src="images/classroom-4.jpg">
+                <img src="images/classroom-4.jpg" alt="Classroom 4" onerror="this.parentElement.classList.add('placeholder-mode')">
+                <div class="globe-placeholder"><i class="fas fa-users"></i></div>
+              </div>
+
+            </div>
           </div>
-          <div class="gallery-item glass-card">
-            <div class="gallery-placeholder"><i class="fas fa-laptop-code"></i><p>Students Learning</p></div>
-            <img src="images/gallery-2.jpg" alt="Students Learning" onerror="this.style.display='none'">
-          </div>
-          <div class="gallery-item glass-card">
-            <div class="gallery-placeholder"><i class="fas fa-code"></i><p>Project Work</p></div>
-            <img src="images/gallery-3.jpg" alt="Project Work" onerror="this.style.display='none'">
-          </div>
-          <div class="gallery-item glass-card">
-            <div class="gallery-placeholder"><i class="fas fa-award"></i><p>Award Ceremony</p></div>
-            <img src="images/gallery-4.jpg" alt="Award Ceremony" onerror="this.style.display='none'">
-          </div>
-          <div class="gallery-item glass-card">
-            <div class="gallery-placeholder"><i class="fas fa-users"></i><p>Workshop</p></div>
-            <img src="images/gallery-5.jpg" alt="Workshop" onerror="this.style.display='none'">
-          </div>
-          <div class="gallery-item glass-card">
-            <div class="gallery-placeholder"><i class="fas fa-medal"></i><p>Certificate</p></div>
-            <img src="images/gallery-6.jpg" alt="Certificate" onerror="this.style.display='none'">
-          </div>
+
+          <div class="globe-core" aria-hidden="true"></div>
+
+          <p class="globe-hint">
+            <i class="fas fa-hand-pointer"></i>
+            Drag to rotate • Click to view
+          </p>
         </div>
       </div>
     </section>
@@ -759,6 +830,13 @@
   <div class="toast" id="toast" role="status" aria-live="polite">
     <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
     <div class="toast-message"><h4>Success!</h4><p id="toastText">Your details were sent successfully.</p></div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    <button class="lightbox-next" id="lightboxNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
   </div>
 
   <script src="script.js"></script>
